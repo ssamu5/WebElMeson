@@ -1,0 +1,22 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:gratis-5066477.webadorsite.com)",
+      "Bash(npx create-next-app@latest . --typescript --tailwind --app --src-dir --no-git --eslint --import-alias \"@/*\")",
+      "Bash(npm config *)",
+      "Bash(mkdir \"C:\\\\temp\\\\elmeson-setup\")",
+      "Bash(npx create-next-app@14 \"C:\\\\temp\\\\elmeson-setup\" --typescript --tailwind --app --src-dir --no-git --eslint --import-alias \"@/*\")",
+      "Bash(npx create-next-app@14 __TRACKED_VAR__/elmeson-setup --typescript --tailwind --app --src-dir --no-git --eslint --import-alias '@/*')",
+      "PowerShell($src = \"C:\\\\Users\\\\samul\\\\elmeson-setup\"; $dst = \"C:\\\\Users\\\\samul\\\\OneDrive\\\\Escritorio\\\\WebElMeson\"; Get-ChildItem -Path $src | Where-Object { $_.Name -ne \"node_modules\" -and $_.Name -ne \".git\" } | ForEach-Object { Copy-Item -Path $_.FullName -Destination $dst -Recurse -Force }; Write-Output \"Done copying files\")",
+      "Bash(node scripts/optimize-images.mjs)",
+      "mcp__claude_ai_Supabase__list_projects",
+      "mcp__claude_ai_Supabase__get_cost",
+      "mcp__claude_ai_Supabase__confirm_cost",
+      "mcp__claude_ai_Supabase__create_project",
+      "mcp__claude_ai_Supabase__apply_migration",
+      "mcp__claude_ai_Supabase__get_project_url",
+      "mcp__claude_ai_Supabase__get_publishable_keys",
+      "mcp__claude_ai_Supabase__execute_sql"
+    ]
+  }
+}
