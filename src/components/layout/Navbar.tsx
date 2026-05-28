@@ -10,7 +10,6 @@ const NAV_LINKS = [
   { href: "/", label: "Inicio" },
   { href: "/carta", label: "Carta" },
   { href: "/foodtruck", label: "Foodtruck" },
-  { href: "/galeria", label: "Galería" },
   { href: "/info", label: "Info" },
 ];
 
