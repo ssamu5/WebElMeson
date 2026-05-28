@@ -49,8 +49,10 @@ export default async function CartaPage() {
           <section key={cat} id={cat}>
             <SectionTitle title={CATEGORY_LABELS[cat]} />
             <div className="space-y-2">
-              {byCategory[cat].map((item) => (
-                <MenuItemCard key={item.id} item={item} />
+              {byCategory[cat].map((item, idx) => (
+                <div key={item.id} className="scroll-reveal" style={{ transitionDelay: `${idx * 50}ms` }}>
+                  <MenuItemCard item={item} />
+                </div>
               ))}
               {byCategory[cat].length === 0 && (
                 <p className="text-muted text-sm italic py-4">Próximamente...</p>
