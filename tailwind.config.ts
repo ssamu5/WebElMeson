@@ -17,12 +17,12 @@ const config: Config = {
           amber: "#FF8C00",
         },
         dark: {
-          DEFAULT: "#0A0A0A",
-          secondary: "#111111",
-          elevated: "#1A1A1A",
-          border: "#2A2A2A",
+          DEFAULT: "#0D0806",
+          secondary: "#160D07",
+          elevated: "#201208",
+          border: "#2E1A0E",
         },
-        muted: "#6B6B6B",
+        muted: "#7A6050",
       },
       fontFamily: {
         display: ["var(--font-bebas)", "Impact", "sans-serif"],

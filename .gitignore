@@ -35,6 +35,13 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
+# Claude settings (may contain logged commands with secrets)
+.claude/
+
+# One-time setup scripts (contain API tokens)
+scripts/setup-db.mjs
+scripts/deploy-vercel.mjs
+
 # Large source images (only optimized WebP in public/images/ goes to git)
 /Fotos_Referencia/*.png
 /Fotos_Referencia/*.jpg

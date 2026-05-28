@@ -121,12 +121,6 @@ export default function InfoPage() {
                 text={SITE_CONFIG.phone.local}
               />
               <ContactRow
-                icon={<PhoneIcon />}
-                label="Móvil"
-                href={SITE_CONFIG.phone.mobileHref}
-                text={SITE_CONFIG.phone.mobile}
-              />
-              <ContactRow
                 icon={<MailIcon />}
                 label="Email"
                 href={SITE_CONFIG.emailHref}
