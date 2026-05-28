@@ -43,21 +43,23 @@ export default function MenuModal({ item, onClose }: Props) {
         className="relative z-10 w-full sm:max-w-md bg-dark-elevated border border-dark-border rounded-t-3xl sm:rounded-2xl overflow-y-auto max-h-[92dvh] shadow-[0_0_60px_rgba(232,24,154,0.2)] animate-slide-up sm:animate-fade-in"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Image */}
+        {/* Image — object-contain so the full burger is always visible */}
         {item.image_url ? (
-          <div className="relative w-full aspect-[4/3] bg-dark">
+          <div className="relative w-full bg-dark flex items-center justify-center" style={{ minHeight: 200, maxHeight: '45vh' }}>
             <Image
               src={item.image_url}
               alt={item.name}
-              fill
-              className="object-cover"
+              width={600}
+              height={450}
+              className="w-full h-full object-contain"
+              style={{ maxHeight: '45vh' }}
               sizes="(max-width: 640px) 100vw, 448px"
               priority
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-dark-elevated via-transparent to-transparent" />
+            <div className="absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-dark-elevated to-transparent" />
           </div>
         ) : (
-          <div className="w-full h-24 bg-dark flex items-center justify-center">
+          <div className="w-full h-20 bg-dark flex items-center justify-center">
             <span className="text-4xl">🍔</span>
           </div>
         )}

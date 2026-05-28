@@ -21,8 +21,8 @@ export default function BestSellers({ items }: Props) {
         centered
       />
 
-      {/* Mobile: horizontal scroll. Desktop: grid */}
-      <div className="flex md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 overflow-x-auto no-scrollbar pb-4 md:pb-0 scroll-snap-x">
+      {/* Mobile: 2-column grid. Desktop: 3-4 columns */}
+      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
         {items.map((item) => (
           <BestSellerCard key={item.id} item={item} />
         ))}
@@ -43,7 +43,7 @@ function BestSellerCard({ item }: { item: MenuItem }) {
   const isSmash = item.category === "smash_10" || item.category === "smash_13";
 
   return (
-    <div className="scroll-snap-start min-w-[58vw] sm:min-w-[260px] md:min-w-0 flex-shrink-0 md:flex-shrink glass-card rounded-lg overflow-hidden hover:border-brand-pink/50 hover:shadow-[0_0_20px_rgba(232,24,154,0.2)] transition-all duration-300 group">
+    <div className="glass-card rounded-lg overflow-hidden hover:border-brand-pink/50 hover:shadow-[0_0_20px_rgba(232,24,154,0.2)] transition-all duration-300 group">
       {/* Photo */}
       {item.image_url && (
         <div className="relative w-full aspect-square overflow-hidden">
@@ -52,7 +52,7 @@ function BestSellerCard({ item }: { item: MenuItem }) {
             alt={item.name}
             fill
             className="object-cover group-hover:scale-105 transition-transform duration-500"
-            sizes="(max-width: 640px) 58vw, 280px"
+            sizes="(max-width: 640px) 48vw, 280px"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-dark via-dark/20 to-transparent" />
           {/* Price overlay */}
