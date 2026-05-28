@@ -40,7 +40,7 @@ export default function MenuModal({ item, onClose }: Props) {
 
       {/* Modal card */}
       <div
-        className="relative z-10 w-full sm:max-w-md bg-dark-elevated border border-dark-border rounded-t-3xl sm:rounded-2xl overflow-hidden shadow-[0_0_60px_rgba(232,24,154,0.2)] animate-slide-up sm:animate-fade-in"
+        className="relative z-10 w-full sm:max-w-md bg-dark-elevated border border-dark-border rounded-t-3xl sm:rounded-2xl overflow-y-auto max-h-[92dvh] shadow-[0_0_60px_rgba(232,24,154,0.2)] animate-slide-up sm:animate-fade-in"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Image */}

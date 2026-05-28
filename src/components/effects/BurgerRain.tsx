@@ -1,32 +1,29 @@
 "use client";
 
-import Image from "next/image";
-
 const BURGERS = [
-  "/images/burger-rain-1.webp",
-  "/images/burger-rain-2.webp",
-  "/images/burger-rain-3.webp",
-  "/images/burger-rain-4.webp",
-  "/images/burger-rain-5.webp",
-  "/images/burger-rain-6.webp",
-  "/images/burger-rain-7.webp",
-  "/images/burger-rain-8.webp",
+  "/images/rain-pulled_beast.webp",
+  "/images/rain-vanelope.webp",
+  "/images/rain-flash_1.webp",
+  "/images/rain-flash_2.webp",
+  "/images/rain-oumama.webp",
+  "/images/rain-rudolph.webp",
+  "/images/rain-space_jam.webp",
 ];
 
 const DROPS = [
-  { left: "4%",  delay: "0s",    dur: "9s",  size: 60,  rot: "-15deg",  rot2: "170deg",  op: "0.15" },
-  { left: "12%", delay: "3.5s",  dur: "11s", size: 45,  rot: "20deg",   rot2: "-200deg", op: "0.12" },
-  { left: "22%", delay: "1s",    dur: "8s",  size: 70,  rot: "-30deg",  rot2: "180deg",  op: "0.17" },
-  { left: "33%", delay: "6s",    dur: "13s", size: 40,  rot: "10deg",   rot2: "-160deg", op: "0.10" },
-  { left: "44%", delay: "2.5s",  dur: "10s", size: 55,  rot: "-25deg",  rot2: "210deg",  op: "0.14" },
-  { left: "55%", delay: "8s",    dur: "9.5s",size: 50,  rot: "35deg",   rot2: "-190deg", op: "0.13" },
-  { left: "65%", delay: "0.5s",  dur: "12s", size: 65,  rot: "-10deg",  rot2: "175deg",  op: "0.16" },
-  { left: "74%", delay: "4s",    dur: "8.5s",size: 42,  rot: "25deg",   rot2: "-215deg", op: "0.11" },
-  { left: "84%", delay: "7s",    dur: "11s", size: 58,  rot: "-20deg",  rot2: "185deg",  op: "0.15" },
-  { left: "92%", delay: "2s",    dur: "9s",  size: 48,  rot: "15deg",   rot2: "-170deg", op: "0.12" },
-  { left: "8%",  delay: "9s",    dur: "10s", size: 52,  rot: "-18deg",  rot2: "195deg",  op: "0.13" },
-  { left: "38%", delay: "5s",    dur: "14s", size: 36,  rot: "28deg",   rot2: "-180deg", op: "0.09" },
-  { left: "78%", delay: "11s",   dur: "8s",  size: 62,  rot: "-22deg",  rot2: "165deg",  op: "0.16" },
+  { left: "3%",  delay: "0s",    dur: "10s", size: 90,  rot: "-15deg", rot2: "170deg"  },
+  { left: "11%", delay: "4s",    dur: "13s", size: 70,  rot: "20deg",  rot2: "-200deg" },
+  { left: "20%", delay: "1.5s",  dur: "9s",  size: 110, rot: "-30deg", rot2: "185deg"  },
+  { left: "31%", delay: "7s",    dur: "14s", size: 65,  rot: "10deg",  rot2: "-160deg" },
+  { left: "42%", delay: "2.5s",  dur: "11s", size: 95,  rot: "-25deg", rot2: "210deg"  },
+  { left: "54%", delay: "9s",    dur: "10s", size: 75,  rot: "35deg",  rot2: "-190deg" },
+  { left: "63%", delay: "0.8s",  dur: "12s", size: 100, rot: "-10deg", rot2: "175deg"  },
+  { left: "73%", delay: "5s",    dur: "9.5s",size: 72,  rot: "25deg",  rot2: "-215deg" },
+  { left: "83%", delay: "3s",    dur: "11s", size: 85,  rot: "-20deg", rot2: "185deg"  },
+  { left: "91%", delay: "6.5s",  dur: "10s", size: 68,  rot: "15deg",  rot2: "-170deg" },
+  { left: "7%",  delay: "11s",   dur: "13s", size: 80,  rot: "-18deg", rot2: "195deg"  },
+  { left: "47%", delay: "8s",    dur: "15s", size: 60,  rot: "28deg",  rot2: "-180deg" },
+  { left: "77%", delay: "2s",    dur: "9s",  size: 92,  rot: "-22deg", rot2: "165deg"  },
 ];
 
 export default function BurgerRain() {
@@ -40,21 +37,19 @@ export default function BurgerRain() {
             left: drop.left,
             top: 0,
             width: drop.size,
-            height: drop.size,
             animationDelay: drop.delay,
             animationDuration: drop.dur,
             "--rot-start": drop.rot,
             "--rot-end": drop.rot2,
-            "--max-opacity": drop.op,
+            "--max-opacity": "0.2",
           } as React.CSSProperties}
         >
-          <Image
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
             src={BURGERS[i % BURGERS.length]}
             alt=""
             width={drop.size}
-            height={drop.size}
-            className="w-full h-full object-cover rounded-full"
-            unoptimized
+            style={{ width: drop.size, mixBlendMode: "screen", display: "block" }}
           />
         </div>
       ))}

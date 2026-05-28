@@ -7,8 +7,6 @@ import MenuItemCard from "./MenuItemCard";
 import MenuModal from "./MenuModal";
 import SectionTitle from "@/components/ui/SectionTitle";
 
-const CATEGORIES: MenuCategory[] = ["raciones", "smash_10", "smash_13", "postres"];
-
 type AnyItem = MenuItem | BurgerDelMes;
 
 interface Props {
@@ -16,10 +14,45 @@ interface Props {
   burger: BurgerDelMes | null;
 }
 
+const CATS_BEFORE: MenuCategory[] = ["raciones", "smash_10", "smash_13"];
+const CATS_AFTER: MenuCategory[] = ["postres"];
+
+function CategorySection({
+  cat,
+  items,
+  onSelect,
+}: {
+  cat: MenuCategory;
+  items: MenuItem[];
+  onSelect: (item: MenuItem) => void;
+}) {
+  return (
+    <section id={cat}>
+      <SectionTitle title={CATEGORY_LABELS[cat]} />
+      <div className="space-y-2">
+        {items.map((item, idx) => (
+          <button
+            key={item.id}
+            className="w-full text-left scroll-reveal focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-pink rounded-lg"
+            style={{ transitionDelay: `${idx * 45}ms` }}
+            onClick={() => onSelect(item)}
+            aria-label={`Ver ${item.name}`}
+          >
+            <MenuItemCard item={item} />
+          </button>
+        ))}
+        {items.length === 0 && (
+          <p className="text-muted text-sm italic py-4">Próximamente...</p>
+        )}
+      </div>
+    </section>
+  );
+}
+
 export default function CartaInteractive({ items, burger }: Props) {
   const [selected, setSelected] = useState<AnyItem | null>(null);
 
-  const byCategory = CATEGORIES.reduce(
+  const byCategory = (["raciones", "smash_10", "smash_13", "postres"] as MenuCategory[]).reduce(
     (acc, cat) => ({ ...acc, [cat]: items.filter((i) => i.category === cat) }),
     {} as Record<MenuCategory, MenuItem[]>
   );
@@ -27,29 +60,12 @@ export default function CartaInteractive({ items, burger }: Props) {
   return (
     <>
       <div className="max-w-4xl mx-auto px-4 py-10 space-y-16">
-        {CATEGORIES.map((cat) => (
-          <section key={cat} id={cat}>
-            <SectionTitle title={CATEGORY_LABELS[cat]} />
-            <div className="space-y-2">
-              {byCategory[cat].map((item, idx) => (
-                <button
-                  key={item.id}
-                  className="w-full text-left scroll-reveal focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-pink rounded-lg"
-                  style={{ transitionDelay: `${idx * 45}ms` }}
-                  onClick={() => setSelected(item)}
-                  aria-label={`Ver detalles de ${item.name}`}
-                >
-                  <MenuItemCard item={item} />
-                </button>
-              ))}
-              {byCategory[cat].length === 0 && (
-                <p className="text-muted text-sm italic py-4">Próximamente...</p>
-              )}
-            </div>
-          </section>
+        {/* Raciones, Smash €10, Smash €13 */}
+        {CATS_BEFORE.map((cat) => (
+          <CategorySection key={cat} cat={cat} items={byCategory[cat]} onSelect={setSelected} />
         ))}
 
-        {/* Burger del Mes */}
+        {/* Burger del Mes — before Postres */}
         {burger && (
           <section id="burger-mes" className="relative">
             <div className="absolute -inset-4 rounded-xl bg-gradient-to-r from-brand-pink/5 via-transparent to-brand-pink/5 pointer-events-none" />
@@ -73,11 +89,7 @@ export default function CartaInteractive({ items, burger }: Props) {
                   {burger.image_url && (
                     <div className="relative w-full aspect-[16/7] overflow-hidden">
                       {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img
-                        src={burger.image_url}
-                        alt={burger.name}
-                        className="w-full h-full object-cover"
-                      />
+                      <img src={burger.image_url} alt={burger.name} className="w-full h-full object-cover" />
                       <div className="absolute inset-0 bg-gradient-to-t from-dark-elevated/90 via-dark-elevated/20 to-transparent" />
                     </div>
                   )}
@@ -102,9 +114,13 @@ export default function CartaInteractive({ items, burger }: Props) {
             </div>
           </section>
         )}
+
+        {/* Postres — after Burger del Mes */}
+        {CATS_AFTER.map((cat) => (
+          <CategorySection key={cat} cat={cat} items={byCategory[cat]} onSelect={setSelected} />
+        ))}
       </div>
 
-      {/* Modal */}
       {selected && <MenuModal item={selected} onClose={() => setSelected(null)} />}
     </>
   );
