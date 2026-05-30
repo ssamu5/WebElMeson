@@ -5,7 +5,7 @@ import { SITE_CONFIG } from "@/lib/constants/siteConfig";
 import PublicLayout from "@/components/layout/PublicLayout";
 
 const inter = localFont({
-  src: "../../public/fonts/inter.woff2",
+  src: "../../public/fonts/space-grotesk.woff2",
   variable: "--font-inter",
   display: "swap",
   fallback: ["system-ui", "-apple-system", "sans-serif"],
