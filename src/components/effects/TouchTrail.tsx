@@ -16,6 +16,7 @@ export default function TouchTrail() {
     // Match physical pixels for sharp rendering
     const dpr = window.devicePixelRatio || 1;
     function resize() {
+      if (!canvas) return;
       canvas.width  = window.innerWidth  * dpr;
       canvas.height = window.innerHeight * dpr;
       canvas.style.width  = window.innerWidth  + "px";
