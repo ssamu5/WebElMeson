@@ -14,7 +14,7 @@ export default function MenuItemCard({ item, variant = "default" }: Props) {
       className={cn(
         "relative flex items-start gap-3 rounded-xl border transition-all duration-200 overflow-hidden p-4",
         item.is_available
-          ? "bg-dark-elevated border-dark-border hover:border-brand-pink/40 active:border-brand-pink/60"
+          ? "bg-dark-elevated border-dark-border hover:border-brand-pink/50 hover:shadow-[0_0_14px_rgba(217,48,96,0.15)] active:scale-[0.98] active:border-brand-pink active:bg-dark-secondary cursor-pointer"
           : "bg-dark-secondary border-dark-border opacity-50",
         variant === "featured" && item.is_available && "border-brand-pink/25"
       )}

@@ -11,7 +11,7 @@ export default function InstagramCTA() {
           Síguenos
         </h2>
         <p className="text-muted text-sm mb-6">
-          Fotos, novedades y la próxima burger del mes avant-première
+          Fotos, anuncios y la próxima burger del mes en exclusiva
         </p>
         <a
           href={SITE_CONFIG.instagram.url}

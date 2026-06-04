@@ -18,7 +18,7 @@ export default function PublicLayout({ children }: { children: React.ReactNode }
       <BurgerRain />
       <HoursBanner />
       <Navbar />
-      <main className="relative z-10" style={{ paddingTop: 64 }}>
+      <main className="relative z-10" style={{ paddingTop: 100 }}>
         {children}
       </main>
       <Footer />

@@ -9,7 +9,7 @@ interface SectionTitleProps {
   rune?: boolean;
 }
 
-export default function SectionTitle({ title, subtitle, centered = false, className, neon = false, rune = false }: SectionTitleProps) {
+export default function SectionTitle({ title, subtitle, centered = false, className, neon = false }: SectionTitleProps) {
   return (
     <div className={cn("mb-8", centered && "text-center", className)}>
       <h2 className={cn("text-4xl md:text-5xl", neon ? "neon-text animate-flicker" : "text-[#f0ece4]")}>

@@ -3,9 +3,9 @@
 @tailwind utilities;
 
 :root {
-  --color-pink: #B53863;
-  --color-pink-glow: #d4476f;
-  --color-pink-dark: #8f2a4d;
+  --color-pink: #D93060;
+  --color-pink-glow: #f0477a;
+  --color-pink-dark: #a82248;
   --color-gold: #c9a84c;
   --color-bg: #0a0a0a;
   --color-bg-secondary: #111111;
@@ -22,6 +22,7 @@ html { scroll-behavior: smooth; -webkit-tap-highlight-color: transparent; }
 
 body {
   background-color: var(--color-bg);
+  background-image: radial-gradient(ellipse 80% 40% at 50% 0%, rgba(217,48,96,0.06) 0%, transparent 60%);
   color: var(--color-text);
   font-family: var(--font-inter), system-ui, -apple-system, sans-serif;
   -webkit-font-smoothing: antialiased;
