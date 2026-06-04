@@ -21,10 +21,10 @@ export default async function HomePage() {
   return (
     <>
       <HeroSection />
-      <div className="scroll-reveal"><BurgerDelMesSection initial={burgerMes as BurgerDelMes | null} /></div>
-      <div className="scroll-reveal" style={{ transitionDelay: "60ms" }}><BestSellers items={(featuredItems as MenuItem[]) ?? []} /></div>
-      <div className="scroll-reveal" style={{ transitionDelay: "120ms" }}><FoodtruckTeaser initial={todayData as TodaySpecial | null} /></div>
-      <div className="scroll-reveal" style={{ transitionDelay: "60ms" }}><InstagramCTA /></div>
+      <div className="scroll-reveal-flip"><BurgerDelMesSection initial={burgerMes as BurgerDelMes | null} /></div>
+      <div className="scroll-reveal"><BestSellers items={(featuredItems as MenuItem[]) ?? []} /></div>
+      <div className="scroll-reveal-left"><FoodtruckTeaser initial={todayData as TodaySpecial | null} /></div>
+      <div className="scroll-reveal-scale"><InstagramCTA /></div>
     </>
   );
 }

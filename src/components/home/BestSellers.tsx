@@ -15,8 +15,10 @@ export default function BestSellers({ items }: Props) {
       <SectionTitle title="Los Más Pedidos" subtitle="Las burgers que enamoran a todos los que las prueban" centered />
 
       <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
-        {items.map((item) => (
-          <BestSellerCard key={item.id} item={item} />
+        {items.map((item, idx) => (
+          <div key={item.id} className="scroll-reveal-bounce" style={{ animationDelay: `${idx * 80}ms` }}>
+            <BestSellerCard item={item} />
+          </div>
         ))}
       </div>
 
@@ -48,7 +50,7 @@ function BestSellerCard({ item }: { item: MenuItem }) {
             </span>
           </div>
           <div className="absolute bottom-2 right-2">
-            <span className="font-display text-xl neon-text drop-shadow-[0_0_8px_rgba(232,24,154,0.9)]">
+            <span className="font-display text-xl price-shimmer drop-shadow-[0_0_8px_rgba(217,48,96,0.9)]">
               {formatPriceShort(item.price)}
             </span>
           </div>

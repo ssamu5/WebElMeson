@@ -29,7 +29,7 @@ export default function MenuItemCard({ item, variant = "default" }: Props) {
           <h3 className="font-display text-lg sm:text-xl uppercase tracking-wider text-brand-pink leading-tight flex-1">
             {item.name}
           </h3>
-          <span className="font-display text-xl sm:text-2xl neon-text shrink-0 ml-1">
+          <span className="font-display text-xl sm:text-2xl price-shimmer shrink-0 ml-1">
             {formatPriceShort(item.price)}
           </span>
         </div>

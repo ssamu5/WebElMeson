@@ -26,7 +26,7 @@ export default function HeroSection() {
       {/* Content */}
       <div className="relative z-10 text-center px-4 flex flex-col items-center gap-4 sm:gap-5 animate-fade-in w-full max-w-lg mx-auto">
         <div>
-          <h1 className="metal text-white drop-shadow-[0_2px_30px_rgba(0,0,0,0.9)]" style={{ fontSize: "clamp(4.5rem,24vw,10rem)", lineHeight: 1 }}>
+          <h1 className="metal text-white drop-shadow-[0_2px_30px_rgba(0,0,0,0.9)] animate-glitch" style={{ fontSize: "clamp(4.5rem,24vw,10rem)", lineHeight: 1 }}>
             El Mesón
           </h1>
           <p className="metal neon-text animate-flicker mt-1" style={{ fontSize: "clamp(1.8rem,9vw,4rem)" }}>
@@ -37,10 +37,10 @@ export default function HeroSection() {
         {/* CTAs */}
         <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto mt-2">
           <Link href="/carta" className="w-full sm:w-auto">
-            <Button variant="primary" size="lg" className="w-full">Ver la Carta</Button>
+            <Button variant="primary" size="lg" className="w-full btn-shine ripple-container">Ver la Carta</Button>
           </Link>
           <Link href="/foodtruck" className="w-full sm:w-auto">
-            <Button variant="neon" size="lg" className="w-full">¿Dónde estamos hoy?</Button>
+            <Button variant="neon" size="lg" className="w-full ripple-container">¿Dónde estamos hoy?</Button>
           </Link>
         </div>
 

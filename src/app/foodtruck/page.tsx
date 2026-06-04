@@ -52,7 +52,7 @@ export default async function FoodtruckPage() {
             { label: "Hechas al momento", value: "45s" },
           ].map(({ label, value }) => (
             <div key={label} className="flex flex-col items-center justify-center py-6 px-3 text-center gap-1">
-              <span className="font-display text-3xl sm:text-4xl neon-text">{value}</span>
+              <span className="font-display text-3xl sm:text-4xl price-shimmer animate-number-pop">{value}</span>
               <span className="text-muted text-[11px] sm:text-xs uppercase tracking-wider leading-tight">{label}</span>
             </div>
           ))}

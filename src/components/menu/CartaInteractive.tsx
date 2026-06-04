@@ -40,8 +40,8 @@ function CategorySection({
         {items.map((item, idx) => (
           <button
             key={item.id}
-            className="w-full text-left scroll-reveal focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-pink rounded-lg"
-            style={{ transitionDelay: `${idx * 45}ms` }}
+            className="w-full text-left scroll-reveal-bounce focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-pink rounded-lg ripple-container"
+            style={{ animationDelay: `${idx * 60}ms` }}
             onClick={() => onSelect(item)}
             aria-label={`Ver ${item.name}`}
           >
