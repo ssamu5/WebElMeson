@@ -33,6 +33,7 @@ export default function TouchTrail() {
 
     function draw() {
       const now = Date.now();
+      if (!canvas) return;
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       // Remove old points
