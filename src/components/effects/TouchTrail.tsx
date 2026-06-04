@@ -26,7 +26,7 @@ export default function TouchTrail() {
     }
 
     function onTouch(e: TouchEvent) {
-      for (const t of e.touches) spawnSpark(t.clientX, t.clientY);
+      Array.from(e.touches).forEach(t => spawnSpark(t.clientX, t.clientY));
     }
     function onMouse(e: MouseEvent) {
       if (e.buttons > 0) spawnSpark(e.clientX, e.clientY);
