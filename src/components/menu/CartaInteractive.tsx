@@ -25,29 +25,37 @@ const CATEGORY_RUNES: Record<MenuCategory, string> = {
 };
 
 function CategorySection({
-  cat,
-  items,
-  onSelect,
+  cat, items, onSelect, hoveredId,
 }: {
   cat: MenuCategory;
   items: MenuItem[];
   onSelect: (item: MenuItem) => void;
+  hoveredId: string | null;
 }) {
   return (
     <section id={cat}>
       <SectionTitle title={CATEGORY_LABELS[cat]} runeChar={CATEGORY_RUNES[cat]} centered />
       <div className="space-y-2">
-        {items.map((item, idx) => (
-          <button
-            key={item.id}
-            className="w-full text-left scroll-reveal-bounce focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-pink rounded-lg ripple-container card-active-glow"
-            style={{ animationDelay: `${idx * 60}ms` }}
-            onClick={() => onSelect(item)}
-            aria-label={`Ver ${item.name}`}
-          >
-            <MenuItemCard item={item} />
-          </button>
-        ))}
+        {items.map((item, idx) => {
+          const isHovered = hoveredId === item.id;
+          return (
+            <button
+              key={item.id}
+              data-item-id={item.id}
+              className="w-full text-left scroll-reveal-bounce focus:outline-none rounded-lg ripple-container"
+              style={{
+                animationDelay: `${idx * 60}ms`,
+                transition: "transform 0.15s ease, box-shadow 0.15s ease",
+                transform: isHovered ? "scale(1.02)" : "scale(1)",
+                boxShadow: isHovered ? "0 0 20px rgba(217,48,96,0.45), 0 0 40px rgba(217,48,96,0.2)" : "none",
+              }}
+              onClick={() => onSelect(item)}
+              aria-label={`Ver ${item.name}`}
+            >
+              <MenuItemCard item={item} highlighted={isHovered} />
+            </button>
+          );
+        })}
         {items.length === 0 && (
           <p className="text-muted text-sm italic py-4">Próximamente...</p>
         )}
@@ -58,18 +66,38 @@ function CategorySection({
 
 export default function CartaInteractive({ items, burger }: Props) {
   const [selected, setSelected] = useState<AnyItem | null>(null);
+  const [hoveredId, setHoveredId] = useState<string | null>(null);
 
   const byCategory = (["raciones", "smash_10", "smash_13", "postres"] as MenuCategory[]).reduce(
     (acc, cat) => ({ ...acc, [cat]: items.filter((i) => i.category === cat) }),
     {} as Record<MenuCategory, MenuItem[]>
   );
 
+  // Detect which card the finger is over while sliding
+  useEffect(() => {
+    function onTouchMove(e: TouchEvent) {
+      const t = e.touches[0];
+      const el = document.elementFromPoint(t.clientX, t.clientY) as HTMLElement | null;
+      const card = el?.closest("[data-item-id]") as HTMLElement | null;
+      setHoveredId(card ? card.getAttribute("data-item-id") : null);
+    }
+    function onTouchEnd() { setHoveredId(null); }
+    document.addEventListener("touchmove",  onTouchMove, { passive: true });
+    document.addEventListener("touchend",   onTouchEnd);
+    document.addEventListener("touchcancel",onTouchEnd);
+    return () => {
+      document.removeEventListener("touchmove",  onTouchMove);
+      document.removeEventListener("touchend",   onTouchEnd);
+      document.removeEventListener("touchcancel",onTouchEnd);
+    };
+  }, []);
+
   return (
     <>
       <div className="max-w-4xl mx-auto px-4 py-10 space-y-16">
         {/* Raciones, Smash €10, Smash €13 */}
         {CATS_BEFORE.map((cat) => (
-          <CategorySection key={cat} cat={cat} items={byCategory[cat]} onSelect={setSelected} />
+          <CategorySection key={cat} cat={cat} items={byCategory[cat]} onSelect={setSelected} hoveredId={hoveredId} />
         ))}
 
         {/* Burger del Mes — before Postres */}
@@ -128,7 +156,7 @@ export default function CartaInteractive({ items, burger }: Props) {
 
         {/* Postres — after Burger del Mes */}
         {CATS_AFTER.map((cat) => (
-          <CategorySection key={cat} cat={cat} items={byCategory[cat]} onSelect={setSelected} />
+          <CategorySection key={cat} cat={cat} items={byCategory[cat]} onSelect={setSelected} hoveredId={hoveredId} />
         ))}
       </div>
 

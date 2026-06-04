@@ -1,55 +1,80 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 export default function TouchTrail() {
+  const dotRef = useRef<HTMLDivElement>(null);
+  const visibleRef = useRef(false);
+
   useEffect(() => {
-    function spawnSpark(x: number, y: number) {
-      const count = 3;
-      for (let i = 0; i < count; i++) {
-        const dot = document.createElement("div");
-        const size = 6 + Math.random() * 8;
-        const dx = (Math.random() - 0.5) * 20;
-        const dy = (Math.random() - 0.5) * 20;
-        dot.style.cssText = `
-          position:fixed; pointer-events:none; z-index:9998;
-          width:${size}px; height:${size}px; border-radius:50%;
-          left:${x}px; top:${y}px;
-          background: radial-gradient(circle, #fff 0%, #D93060 60%, transparent 100%);
-          transform: translate(-50%,-50%);
-          animation: spark-out 0.5s ease-out forwards;
-          --dx: ${dx}px; --dy: ${dy}px;
-        `;
-        document.body.appendChild(dot);
-        setTimeout(() => dot.remove(), 520);
-      }
+    const dot = dotRef.current;
+    if (!dot) return;
+
+    function moveTo(x: number, y: number) {
+      if (!dot) return;
+      dot.style.left = `${x}px`;
+      dot.style.top  = `${y}px`;
     }
 
-    function onTouch(e: TouchEvent) {
-      Array.from(e.touches).forEach(t => spawnSpark(t.clientX, t.clientY));
-    }
-    function onMouse(e: MouseEvent) {
-      if (e.buttons > 0) spawnSpark(e.clientX, e.clientY);
+    function show() {
+      if (!dot) return;
+      dot.style.opacity = "1";
+      dot.style.transform = "translate(-50%, -50%) scale(1)";
+      visibleRef.current = true;
     }
 
-    document.addEventListener("touchmove",  onTouch, { passive: true });
-    document.addEventListener("touchstart", onTouch, { passive: true });
-    document.addEventListener("mousemove",  onMouse);
+    function hide() {
+      if (!dot) return;
+      dot.style.opacity = "0";
+      dot.style.transform = "translate(-50%, -50%) scale(0.3)";
+      visibleRef.current = false;
+    }
+
+    function onTouchMove(e: TouchEvent) {
+      const t = e.touches[0];
+      moveTo(t.clientX, t.clientY);
+      if (!visibleRef.current) show();
+    }
+
+    function onTouchStart(e: TouchEvent) {
+      const t = e.touches[0];
+      moveTo(t.clientX, t.clientY);
+      show();
+    }
+
+    function onTouchEnd() { hide(); }
+
+    document.addEventListener("touchmove",  onTouchMove,  { passive: true });
+    document.addEventListener("touchstart", onTouchStart, { passive: true });
+    document.addEventListener("touchend",   onTouchEnd);
 
     return () => {
-      document.removeEventListener("touchmove",  onTouch);
-      document.removeEventListener("touchstart", onTouch);
-      document.removeEventListener("mousemove",  onMouse);
+      document.removeEventListener("touchmove",  onTouchMove);
+      document.removeEventListener("touchstart", onTouchStart);
+      document.removeEventListener("touchend",   onTouchEnd);
     };
   }, []);
 
   return (
-    <style>{`
-      @keyframes spark-out {
-        0%   { transform: translate(-50%,-50%) scale(1.2); opacity: 1; }
-        60%  { transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy))) scale(0.6); opacity: 0.7; }
-        100% { transform: translate(calc(-50% + var(--dx)*2), calc(-50% + var(--dy)*2)) scale(0); opacity: 0; }
-      }
-    `}</style>
+    <div
+      ref={dotRef}
+      aria-hidden="true"
+      style={{
+        position: "fixed",
+        pointerEvents: "none",
+        zIndex: 9998,
+        width: 28,
+        height: 28,
+        borderRadius: "50%",
+        background: "radial-gradient(circle, rgba(255,255,255,0.95) 0%, #D93060 55%, rgba(217,48,96,0.2) 100%)",
+        boxShadow: "0 0 16px rgba(217,48,96,0.8), 0 0 30px rgba(217,48,96,0.4)",
+        opacity: 0,
+        transform: "translate(-50%, -50%) scale(0.3)",
+        transition: "opacity 0.12s ease, transform 0.12s ease",
+        left: "-100px",
+        top: "-100px",
+        mixBlendMode: "screen",
+      }}
+    />
   );
 }

@@ -184,34 +184,19 @@ h3, h4 {
    NUEVAS ANIMACIONES — dopamina
    ============================================================ */
 
-/* Glitch tradicional CRT — sin clip-path, solo desplazamiento + aberración cromática */
+/* Glitch CRT — movimiento lento y constante, nunca estático */
 @keyframes glitch {
-  /* Estático */
-  0%, 55%, 100% {
-    transform: none;
-    text-shadow: var(--neon-text-glow);
-  }
-  /* Micro-temblor previo */
-  56% { transform: translateX(-1px); text-shadow: 1px 0 #f0477a, var(--neon-text-glow); }
-  57% { transform: translateX(1px);  text-shadow: -1px 0 #a82248, var(--neon-text-glow); }
-  58% { transform: translateX(-1px); text-shadow: var(--neon-text-glow); }
-  59% { transform: none; }
-  /* Glitch fuerte 1 */
-  60% { transform: translateX(-5px) skewX(-1deg); text-shadow: 5px 0 #f0477a, -5px 0 #a82248; }
-  61% { transform: translateX(5px)  skewX(1deg);  text-shadow: -5px 0 #f0477a, 5px 0 #ff6090; }
-  62% { transform: translateX(-3px); text-shadow: 3px 0 #f0477a, -3px 0 #a82248; }
-  63% { transform: translateX(3px);  text-shadow: -3px 0 #f0477a; }
-  /* Pausa breve */
-  64%, 65% { transform: none; text-shadow: var(--neon-text-glow); }
-  /* Glitch fuerte 2 */
-  66% { transform: translateX(6px) skewX(1.5deg);  text-shadow: -6px 0 #f0477a, 6px 0 #a82248; }
-  67% { transform: translateX(-6px) skewX(-1.5deg); text-shadow: 6px 0 #ff6090, -6px 0 #D93060; }
-  68% { transform: translateX(2px); text-shadow: -2px 0 #f0477a; }
-  /* Recuperación */
-  69% { transform: translateX(-1px); text-shadow: var(--neon-text-glow); }
-  70% { transform: none; text-shadow: var(--neon-text-glow); }
+  0%   { transform: translateX(0);      text-shadow: var(--neon-text-glow); }
+  12%  { transform: translateX(-2px);   text-shadow: 2px 0 rgba(240,71,122,0.7), var(--neon-text-glow); }
+  25%  { transform: translateX(1.5px);  text-shadow: -1.5px 0 rgba(168,34,72,0.6), var(--neon-text-glow); }
+  37%  { transform: translateX(-2.5px) skewX(-0.4deg); text-shadow: 2.5px 0 rgba(240,71,122,0.8), var(--neon-text-glow); }
+  50%  { transform: translateX(2px);    text-shadow: -2px 0 rgba(168,34,72,0.7), var(--neon-text-glow); }
+  62%  { transform: translateX(-1.5px) skewX(0.3deg); text-shadow: 1.5px 0 rgba(240,71,122,0.6), var(--neon-text-glow); }
+  75%  { transform: translateX(1px);    text-shadow: -1px 0 rgba(168,34,72,0.5), var(--neon-text-glow); }
+  87%  { transform: translateX(-1px);   text-shadow: 1px 0 rgba(240,71,122,0.5), var(--neon-text-glow); }
+  100% { transform: translateX(0);      text-shadow: var(--neon-text-glow); }
 }
-.animate-glitch { animation: glitch 4s linear infinite; }
+.animate-glitch { animation: glitch 7s ease-in-out infinite; }
 
 /* Shimmer en precios */
 @keyframes price-shimmer {

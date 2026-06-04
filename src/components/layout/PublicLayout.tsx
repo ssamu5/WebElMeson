@@ -31,7 +31,6 @@ export default function PublicLayout({ children }: { children: React.ReactNode }
         948 840 354
       </a>
       <TouchTrail />
-      <div className="scanline-sweep" aria-hidden="true" />
       <ScrollRevealInit />
     </>
   );
