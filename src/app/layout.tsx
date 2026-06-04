@@ -60,7 +60,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es">
-      <body className={`${spaceGrotesk.variable} ${bebasNeue.variable} ${playfair.variable} ${imFell.variable} antialiased bg-dark text-[#F5F5F5] min-h-screen`}>
+      <body className={`${spaceGrotesk.variable} ${bebasNeue.variable} ${playfair.variable} ${imFell.variable} antialiased bg-dark text-[#F5F5F5] min-h-screen overflow-x-hidden`}>
         <PublicLayout>{children}</PublicLayout>
       </body>
     </html>
