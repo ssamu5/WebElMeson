@@ -5,7 +5,7 @@ export default function HoursBanner() {
   const repeated = Array(6).fill(text).join("   ᛟ   ");
 
   return (
-    <div className="bg-white sticky top-0 z-[60]" style={{ height: 36, overflow: "hidden", maxWidth: "100vw" }}>
+    <div className="bg-white fixed top-0 left-0 right-0 z-[60]" style={{ height: 36, overflow: "hidden" }}>
       <div
         className="flex items-center h-full whitespace-nowrap"
         style={{ animation: "ticker 22s linear infinite", willChange: "transform" }}

@@ -21,10 +21,10 @@ export default async function HomePage() {
   return (
     <>
       <HeroSection />
-      <BurgerDelMesSection initial={burgerMes as BurgerDelMes | null} />
-      <BestSellers items={(featuredItems as MenuItem[]) ?? []} />
-      <FoodtruckTeaser initial={todayData as TodaySpecial | null} />
-      <InstagramCTA />
+      <div className="scroll-reveal"><BurgerDelMesSection initial={burgerMes as BurgerDelMes | null} /></div>
+      <div className="scroll-reveal" style={{ transitionDelay: "60ms" }}><BestSellers items={(featuredItems as MenuItem[]) ?? []} /></div>
+      <div className="scroll-reveal" style={{ transitionDelay: "120ms" }}><FoodtruckTeaser initial={todayData as TodaySpecial | null} /></div>
+      <div className="scroll-reveal" style={{ transitionDelay: "60ms" }}><InstagramCTA /></div>
     </>
   );
 }
