@@ -3,21 +3,21 @@
 @tailwind utilities;
 
 :root {
-  --color-pink: #E8189A;
-  --color-pink-glow: #FF40B8;
-  --color-pink-dark: #A01068;
-  --color-bg: #0A0A0A;
+  --color-pink: #B53863;
+  --color-pink-glow: #d4476f;
+  --color-pink-dark: #8f2a4d;
+  --color-gold: #c9a84c;
+  --color-bg: #0a0a0a;
   --color-bg-secondary: #111111;
   --color-bg-elevated: #1A1A1A;
-  --color-border: #2A2A2A;
-  --color-text: #F5F5F5;
-  --color-muted: #6B6B6B;
-  --neon-glow: 0 0 12px var(--color-pink), 0 0 45px rgba(232,24,154,0.4);
-  --neon-text-glow: 0 0 10px var(--color-pink), 0 0 25px rgba(232,24,154,0.6), 0 0 50px rgba(232,24,154,0.3);
+  --color-border: #2a2a2a;
+  --color-text: #f0ece4;
+  --color-muted: #a89f94;
+  --neon-glow: 0 0 12px var(--color-pink), 0 0 45px rgba(181,56,99,0.35);
+  --neon-text-glow: 0 0 10px var(--color-pink), 0 0 25px rgba(181,56,99,0.5), 0 0 50px rgba(181,56,99,0.25);
 }
 
 * { box-sizing: border-box; padding: 0; margin: 0; }
-
 html { scroll-behavior: smooth; -webkit-tap-highlight-color: transparent; }
 
 body {
@@ -27,6 +27,61 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
+}
+
+/* Grain texture overlay */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  opacity: 0.03;
+}
+
+/* ============================================================
+   HEADINGS — Playfair Display
+   ============================================================ */
+
+h1 {
+  font-family: var(--font-playfair), Georgia, serif;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  line-height: 1.05;
+}
+h2 {
+  font-family: var(--font-playfair), Georgia, serif;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+h3, h4 {
+  font-family: var(--font-playfair), Georgia, serif;
+  font-weight: 700;
+}
+
+/* IM Fell English for taglines / subtitles */
+.tagline, .subtitle, .imfell {
+  font-family: var(--font-imfell), Georgia, serif;
+  font-style: italic;
+}
+
+/* ============================================================
+   SECTION DIVIDER — Viking runes
+   ============================================================ */
+
+.section-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  color: #B53863;
+  font-size: 1.2rem;
+  letter-spacing: 8px;
+  margin: 2rem 0;
+  opacity: 0.7;
 }
 
 /* ============================================================
@@ -64,8 +119,8 @@ body {
 }
 
 @keyframes glow-pulse {
-  0%, 100% { box-shadow: 0 0 12px var(--color-pink), 0 0 35px rgba(232,24,154,0.4); }
-  50% { box-shadow: 0 0 24px var(--color-pink), 0 0 70px rgba(232,24,154,0.65); }
+  0%, 100% { box-shadow: 0 0 12px var(--color-pink), 0 0 35px rgba(181,56,99,0.35); }
+  50% { box-shadow: 0 0 24px var(--color-pink), 0 0 70px rgba(181,56,99,0.6); }
 }
 
 @keyframes float {
@@ -87,7 +142,7 @@ body {
   0%   { transform: translateY(-180px) rotate(var(--rot-start, -20deg)) scale(var(--scale, 1)); opacity: 0; }
   8%   { opacity: var(--max-opacity, 0.18); }
   88%  { opacity: var(--max-opacity, 0.18); }
-  100% { transform: translateY(110vh)   rotate(var(--rot-end,   200deg)) scale(var(--scale, 1)); opacity: 0; }
+  100% { transform: translateY(110vh) rotate(var(--rot-end, 200deg)) scale(var(--scale, 1)); opacity: 0; }
 }
 
 @keyframes ping-pink {
@@ -112,19 +167,14 @@ body {
   transform: translateY(32px);
   transition: opacity 0.6s cubic-bezier(0.16,1,0.3,1), transform 0.6s cubic-bezier(0.16,1,0.3,1);
 }
-.scroll-reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
+.scroll-reveal.visible { opacity: 1; transform: translateY(0); }
+
 .scroll-reveal-left {
   opacity: 0;
   transform: translateX(-30px);
   transition: opacity 0.6s cubic-bezier(0.16,1,0.3,1), transform 0.6s cubic-bezier(0.16,1,0.3,1);
 }
-.scroll-reveal-left.visible {
-  opacity: 1;
-  transform: translateX(0);
-}
+.scroll-reveal-left.visible { opacity: 1; transform: translateX(0); }
 
 /* ============================================================
    SCANLINES
@@ -140,17 +190,28 @@ body {
 }
 
 /* ============================================================
+   GLASS CARD
+   ============================================================ */
+
+.glass-card {
+  background: rgba(26, 26, 26, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--color-border);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.glass-card:hover {
+  border-color: rgba(181,56,99,0.4);
+  box-shadow: 0 0 12px rgba(181,56,99,0.12);
+}
+
+/* ============================================================
    TYPOGRAPHY
    ============================================================ */
 
 .font-display {
   font-family: var(--font-bebas), 'Impact', sans-serif;
   letter-spacing: 0.05em;
-}
-
-.text-gradient-pink {
-  background: linear-gradient(135deg, var(--color-pink) 0%, var(--color-pink-glow) 100%);
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
 }
 
 /* ============================================================
@@ -163,59 +224,35 @@ body {
 ::-webkit-scrollbar-thumb:hover { background: var(--color-pink); }
 
 /* ============================================================
-   GLASS CARD
-   ============================================================ */
-
-.glass-card {
-  background: rgba(26, 26, 26, 0.85);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid var(--color-border);
-}
-
-/* ============================================================
    UTILITIES
    ============================================================ */
 
 .no-scrollbar::-webkit-scrollbar { display: none; }
 .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
-:focus-visible {
-  outline: 2px solid var(--color-pink);
-  outline-offset: 2px;
-  border-radius: 2px;
-}
-
-::selection {
-  background: rgba(232,24,154,0.35);
-  color: #fff;
-}
+:focus-visible { outline: 2px solid var(--color-pink); outline-offset: 2px; border-radius: 2px; }
+::selection { background: rgba(181,56,99,0.35); color: #fff; }
 
 /* ============================================================
-   FLOATING CALL BUTTON (mobile FAB)
+   FLOATING CALL BUTTON
    ============================================================ */
 
 .fab-call {
   position: fixed;
-  bottom: 20px;
-  right: 16px;
+  bottom: 20px; right: 16px;
   z-index: 100;
-  display: flex;
-  align-items: center;
-  gap: 8px;
+  display: flex; align-items: center; gap: 8px;
   background: var(--color-pink);
   color: #fff;
   font-family: var(--font-bebas), sans-serif;
-  font-size: 1rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  font-size: 1rem; letter-spacing: 0.1em; text-transform: uppercase;
   padding: 12px 18px;
   border-radius: 50px;
-  box-shadow: 0 0 20px rgba(232,24,154,0.5), 0 4px 20px rgba(0,0,0,0.4);
+  box-shadow: 0 0 20px rgba(181,56,99,0.45), 0 4px 20px rgba(0,0,0,0.4);
   transition: box-shadow 0.2s, transform 0.2s;
   text-decoration: none;
 }
 .fab-call:hover {
-  box-shadow: 0 0 35px rgba(232,24,154,0.8), 0 4px 24px rgba(0,0,0,0.4);
+  box-shadow: 0 0 35px rgba(181,56,99,0.7), 0 4px 24px rgba(0,0,0,0.4);
   transform: scale(1.04);
 }

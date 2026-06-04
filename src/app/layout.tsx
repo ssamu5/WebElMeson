@@ -4,7 +4,7 @@ import "./globals.css";
 import { SITE_CONFIG } from "@/lib/constants/siteConfig";
 import PublicLayout from "@/components/layout/PublicLayout";
 
-const inter = localFont({
+const spaceGrotesk = localFont({
   src: "../../public/fonts/space-grotesk.woff2",
   variable: "--font-inter",
   display: "swap",
@@ -16,6 +16,24 @@ const bebasNeue = localFont({
   variable: "--font-bebas",
   display: "swap",
   fallback: ["Impact", "Arial Narrow", "sans-serif"],
+});
+
+const playfair = localFont({
+  src: [
+    { path: "../../public/fonts/playfair-400.woff2", weight: "400", style: "normal" },
+    { path: "../../public/fonts/playfair-700.woff2", weight: "700", style: "normal" },
+    { path: "../../public/fonts/playfair-900.woff2", weight: "900", style: "normal" },
+  ],
+  variable: "--font-playfair",
+  display: "swap",
+  fallback: ["Georgia", "Times New Roman", "serif"],
+});
+
+const imFell = localFont({
+  src: "../../public/fonts/im-fell-english.woff2",
+  variable: "--font-imfell",
+  display: "swap",
+  fallback: ["Georgia", "serif"],
 });
 
 export const metadata: Metadata = {
@@ -42,7 +60,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es">
-      <body className={`${inter.variable} ${bebasNeue.variable} antialiased bg-dark text-[#F5F5F5] min-h-screen`}>
+      <body className={`${spaceGrotesk.variable} ${bebasNeue.variable} ${playfair.variable} ${imFell.variable} antialiased bg-dark text-[#F5F5F5] min-h-screen`}>
         <PublicLayout>{children}</PublicLayout>
       </body>
     </html>

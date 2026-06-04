@@ -9,24 +9,25 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // El Mesón brand palette
         brand: {
-          pink: "#E8189A",
-          "pink-glow": "#FF40B8",
-          "pink-dark": "#A01068",
-          amber: "#FF8C00",
+          pink: "#B53863",
+          "pink-glow": "#d4476f",
+          "pink-dark": "#8f2a4d",
+          amber: "#c9a84c",
         },
         dark: {
-          DEFAULT: "#0A0A0A",
+          DEFAULT: "#0a0a0a",
           secondary: "#111111",
           elevated: "#1A1A1A",
-          border: "#2A2A2A",
+          border: "#2a2a2a",
         },
-        muted: "#6B6B6B",
+        muted: "#a89f94",
       },
       fontFamily: {
         display: ["var(--font-bebas)", "Impact", "sans-serif"],
         body: ["var(--font-inter)", "system-ui", "sans-serif"],
+        playfair: ["var(--font-playfair)", "Georgia", "serif"],
+        imfell: ["var(--font-imfell)", "Georgia", "serif"],
       },
       animation: {
         flicker: "flicker 3s linear infinite",

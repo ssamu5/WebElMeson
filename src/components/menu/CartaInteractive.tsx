@@ -28,7 +28,7 @@ function CategorySection({
 }) {
   return (
     <section id={cat}>
-      <SectionTitle title={CATEGORY_LABELS[cat]} />
+      <SectionTitle title={CATEGORY_LABELS[cat]} rune />
       <div className="space-y-2">
         {items.map((item, idx) => (
           <button

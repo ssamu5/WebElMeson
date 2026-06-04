@@ -8,37 +8,36 @@ import { BurgerDelMes, MenuItem, TodaySpecial } from "@/types";
 
 export const revalidate = 60;
 
+function VikingDivider() {
+  return (
+    <div className="section-divider">
+      <span>⟨</span>
+      <span>ᚹ</span>
+      <span>⟩</span>
+    </div>
+  );
+}
+
 export default async function HomePage() {
   const supabase = await createClient();
 
   const [{ data: featuredItems }, { data: burgerMes }, { data: todayData }] =
     await Promise.all([
-      supabase
-        .from("menu_items")
-        .select("*")
-        .eq("is_featured", true)
-        .eq("is_available", true)
-        .order("sort_order")
-        .limit(6),
-      supabase
-        .from("burger_del_mes")
-        .select("*")
-        .eq("is_active", true)
-        .single(),
-      supabase
-        .from("today_special")
-        .select("*")
-        .order("special_date", { ascending: false })
-        .limit(1)
-        .single(),
+      supabase.from("menu_items").select("*").eq("is_featured", true).eq("is_available", true).order("sort_order").limit(6),
+      supabase.from("burger_del_mes").select("*").eq("is_active", true).single(),
+      supabase.from("today_special").select("*").order("special_date", { ascending: false }).limit(1).single(),
     ]);
 
   return (
     <>
       <HeroSection />
+      <VikingDivider />
       <BurgerDelMesSection initial={burgerMes as BurgerDelMes | null} />
+      <VikingDivider />
       <BestSellers items={(featuredItems as MenuItem[]) ?? []} />
+      <VikingDivider />
       <FoodtruckTeaser initial={todayData as TodaySpecial | null} />
+      <VikingDivider />
       <InstagramCTA />
     </>
   );

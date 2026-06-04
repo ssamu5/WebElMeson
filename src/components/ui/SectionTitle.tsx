@@ -6,36 +6,18 @@ interface SectionTitleProps {
   centered?: boolean;
   className?: string;
   neon?: boolean;
+  rune?: boolean;
 }
 
-export default function SectionTitle({
-  title,
-  subtitle,
-  centered = false,
-  className,
-  neon = false,
-}: SectionTitleProps) {
+export default function SectionTitle({ title, subtitle, centered = false, className, neon = false, rune = false }: SectionTitleProps) {
   return (
     <div className={cn("mb-8", centered && "text-center", className)}>
-      <h2
-        className={cn(
-          "font-display text-4xl md:text-5xl uppercase tracking-wider",
-          neon ? "neon-text animate-flicker" : "text-[#F5F5F5]"
-        )}
-      >
+      <h2 className={cn("text-4xl md:text-5xl", neon ? "neon-text animate-flicker" : "text-[#f0ece4]")}>
+        {rune && <span style={{ color: "#B53863", marginRight: 10, fontFamily: "inherit" }}>ᚢ</span>}
         {title}
       </h2>
-      {/* Neon underline divider */}
-      <div
-        className={cn(
-          "mt-2 h-[2px] w-16 bg-brand-pink",
-          "shadow-[0_0_8px_#E8189A,0_0_16px_rgba(232,24,154,0.4)]",
-          centered && "mx-auto"
-        )}
-      />
-      {subtitle && (
-        <p className="mt-3 text-muted text-sm md:text-base">{subtitle}</p>
-      )}
+      <div className={cn("mt-2 h-[2px] w-16 bg-brand-pink shadow-[0_0_8px_#B53863,0_0_16px_rgba(181,56,99,0.4)]", centered && "mx-auto")} />
+      {subtitle && <p className="mt-3 text-muted text-sm md:text-base">{subtitle}</p>}
     </div>
   );
 }
