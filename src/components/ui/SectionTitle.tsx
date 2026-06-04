@@ -17,7 +17,7 @@ export default function SectionTitle({ title, subtitle, centered = false, classN
           {runeChar}
         </span>
       )}
-      <h2 className={cn("text-4xl md:text-5xl", neon ? "neon-text animate-flicker" : "text-[#f0ece4]")}>
+      <h2 className={cn("metal text-4xl md:text-5xl", neon ? "neon-text animate-flicker" : "text-[#f0ece4]")}>
         {title}
       </h2>
       <div className={cn("mt-2 h-[2px] w-16 bg-brand-pink shadow-[0_0_8px_#D93060,0_0_16px_rgba(217,48,96,0.4)]", centered && "mx-auto")} />

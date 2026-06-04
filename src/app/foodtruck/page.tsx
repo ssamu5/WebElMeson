@@ -31,7 +31,7 @@ export default async function FoodtruckPage() {
         </div>
         <div className="absolute top-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-brand-pink/50 to-transparent" />
         <div className="relative z-10 text-center px-4 py-16 sm:py-24">
-          <h1 className="font-display text-6xl sm:text-7xl md:text-8xl uppercase tracking-wider text-white leading-none drop-shadow-[0_2px_20px_rgba(0,0,0,0.8)]">
+          <h1 className="metal text-6xl sm:text-7xl md:text-8xl text-white leading-none drop-shadow-[0_2px_20px_rgba(0,0,0,0.8)]">
             El Mesón,
           </h1>
           <p className="font-display text-3xl sm:text-4xl uppercase tracking-wider neon-text animate-flicker mt-1">

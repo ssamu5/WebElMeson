@@ -20,7 +20,7 @@ export default async function CartaPage() {
       {/* Header */}
       <div className="relative py-14 px-4 text-center border-b border-dark-border">
         <div className="absolute inset-0 bg-gradient-radial from-brand-pink/5 to-transparent" />
-        <h1 className="relative font-display text-6xl sm:text-8xl uppercase tracking-wider text-[#F5F5F5]">
+        <h1 className="relative metal text-6xl sm:text-8xl text-[#F5F5F5]">
           La Carta
         </h1>
         <p className="relative text-muted text-xs sm:text-sm mt-2 uppercase tracking-widest font-display">

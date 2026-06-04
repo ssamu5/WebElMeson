@@ -51,7 +51,7 @@ export default function FoodtruckTeaser({ initial }: Props) {
             🚚 Foodtruck 2026
           </span>
 
-          <h2 className="font-display text-5xl sm:text-6xl md:text-7xl uppercase tracking-wider text-[#F5F5F5] mb-4 leading-none">
+          <h2 className="metal text-5xl sm:text-6xl md:text-7xl text-[#F5F5F5] mb-4 leading-none">
             El Mesón,<br />
             <span className="neon-text">Donde Tú Estés</span>
           </h2>

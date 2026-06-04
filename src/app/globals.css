@@ -10,6 +10,11 @@
   font-style: normal;
 }
 
+/* Metal Lord helper class — usable sin Tailwind */
+.metal {
+  font-family: 'MetalLord', Impact, sans-serif !important;
+}
+
 :root {
   --font-metal: 'MetalLord', Impact, sans-serif;
   --color-pink: #D93060;

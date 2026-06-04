@@ -57,7 +57,7 @@ export default function BurgerDelMesSection({ initial }: Props) {
 
       {/* Text — clearly below the photo */}
       <div className="px-4 py-8 text-center max-w-2xl mx-auto">
-        <h2 className="font-display text-4xl sm:text-5xl md:text-7xl uppercase neon-text mb-3 leading-tight break-words w-full">
+        <h2 className="metal text-4xl sm:text-5xl md:text-7xl neon-text mb-3 leading-tight break-words w-full">
           {burger.name}
         </h2>
 

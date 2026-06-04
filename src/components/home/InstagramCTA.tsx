@@ -7,7 +7,7 @@ export default function InstagramCTA() {
         <div className="mb-6 inline-flex items-center justify-center w-16 h-16 rounded-full border-2 border-brand-pink/50 animate-glow-pulse">
           <InstagramIcon />
         </div>
-        <h2 className="font-display text-3xl sm:text-4xl uppercase tracking-wider text-[#F5F5F5] mb-2">
+        <h2 className="metal text-3xl sm:text-4xl text-[#F5F5F5] mb-2">
           Síguenos
         </h2>
         <p className="text-muted text-sm mb-6">

@@ -135,7 +135,7 @@ export default function Navbar() {
               key={link.href}
               href={link.href}
               className={cn(
-                "font-display text-4xl uppercase tracking-widest transition-all duration-200 py-2",
+                "metal text-4xl transition-all duration-200 py-2",
                 "animate-slide-up",
                 pathname === link.href
                   ? "text-brand-pink neon-text"
