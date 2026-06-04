@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { MenuItem, BurgerDelMes, MenuCategory, CATEGORY_LABELS } from "@/types";
 import { formatPriceShort } from "@/lib/utils/formatPrice";
 import MenuItemCard from "./MenuItemCard";
