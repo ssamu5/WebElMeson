@@ -6,7 +6,8 @@
       "Bash(git *)",
       "Bash(mkdir *)",
       "Bash(sleep *)",
-      "Bash(cat *)"
+      "Bash(cat *)",
+      "Bash(powershell -command \"Expand-Archive -Path 'Fotos_Referencia\\\\metal_lord \\(1\\).zip' -DestinationPath 'Fotos_Referencia\\\\metal_lord_extracted' -Force\")"
     ]
   }
 }

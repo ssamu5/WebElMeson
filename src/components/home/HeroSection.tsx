@@ -26,10 +26,10 @@ export default function HeroSection() {
       {/* Content */}
       <div className="relative z-10 text-center px-4 flex flex-col items-center gap-4 sm:gap-5 animate-fade-in w-full max-w-lg mx-auto">
         <div>
-          <h1 className="font-display text-7xl sm:text-8xl md:text-9xl uppercase tracking-wider text-white leading-none drop-shadow-[0_2px_30px_rgba(0,0,0,0.9)]">
+          <h1 className="font-metal text-7xl sm:text-8xl md:text-9xl text-white leading-none drop-shadow-[0_2px_30px_rgba(0,0,0,0.9)]">
             El Mesón
           </h1>
-          <p className="neon-text font-display text-3xl sm:text-4xl uppercase tracking-[0.2em] animate-flicker mt-1">
+          <p className="neon-text font-metal text-3xl sm:text-4xl tracking-[0.1em] animate-flicker mt-1">
             Smashburgers
           </p>
         </div>

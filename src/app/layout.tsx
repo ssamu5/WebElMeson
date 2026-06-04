@@ -36,6 +36,13 @@ const imFell = localFont({
   fallback: ["Georgia", "serif"],
 });
 
+const metalLord = localFont({
+  src: "../../public/fonts/metal-lord.otf",
+  variable: "--font-metal",
+  display: "swap",
+  fallback: ["Impact", "Arial Black", "sans-serif"],
+});
+
 export const metadata: Metadata = {
   title: {
     default: `${SITE_CONFIG.name} | Smash Burgers en Fustiñana, Navarra`,
@@ -60,7 +67,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es">
-      <body className={`${spaceGrotesk.variable} ${bebasNeue.variable} ${playfair.variable} ${imFell.variable} antialiased bg-dark text-[#F5F5F5] min-h-screen overflow-x-hidden`}>
+      <body className={`${spaceGrotesk.variable} ${bebasNeue.variable} ${playfair.variable} ${imFell.variable} ${metalLord.variable} antialiased bg-dark text-[#F5F5F5] min-h-screen overflow-x-hidden`}>
         <PublicLayout>{children}</PublicLayout>
       </body>
     </html>

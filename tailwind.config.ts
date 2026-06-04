@@ -28,6 +28,7 @@ const config: Config = {
         body: ["var(--font-inter)", "system-ui", "sans-serif"],
         playfair: ["var(--font-playfair)", "Georgia", "serif"],
         imfell: ["var(--font-imfell)", "Georgia", "serif"],
+        metal: ["var(--font-metal)", "Impact", "sans-serif"],
       },
       animation: {
         flicker: "flicker 3s linear infinite",

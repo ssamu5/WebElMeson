@@ -5,15 +5,15 @@ export default function HoursBanner() {
   const repeated = Array(6).fill(text).join("   ᛟ   ");
 
   return (
-    <div className="bg-brand-pink sticky top-0 z-[60]" style={{ height: 36, overflow: "hidden", maxWidth: "100vw" }}>
+    <div className="bg-white sticky top-0 z-[60]" style={{ height: 36, overflow: "hidden", maxWidth: "100vw" }}>
       <div
         className="flex items-center h-full whitespace-nowrap"
         style={{ animation: "ticker 22s linear infinite", willChange: "transform" }}
       >
-        <span className="font-display text-sm uppercase tracking-widest text-white px-4">
+        <span className="font-display text-sm uppercase tracking-widest text-brand-pink px-4">
           {repeated}
         </span>
-        <span className="font-display text-sm uppercase tracking-widest text-white px-4" aria-hidden>
+        <span className="font-display text-sm uppercase tracking-widest text-brand-pink px-4" aria-hidden>
           {repeated}
         </span>
       </div>
