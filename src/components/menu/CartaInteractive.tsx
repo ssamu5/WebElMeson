@@ -17,6 +17,13 @@ interface Props {
 const CATS_BEFORE: MenuCategory[] = ["raciones", "smash_10", "smash_13"];
 const CATS_AFTER: MenuCategory[] = ["postres"];
 
+const CATEGORY_RUNES: Record<MenuCategory, string> = {
+  raciones: "ᚠ",
+  smash_10: "ᚦ",
+  smash_13: "ᛏ",
+  postres: "ᚾ",
+};
+
 function CategorySection({
   cat,
   items,
@@ -28,7 +35,7 @@ function CategorySection({
 }) {
   return (
     <section id={cat}>
-      <SectionTitle title={CATEGORY_LABELS[cat]} rune />
+      <SectionTitle title={CATEGORY_LABELS[cat]} runeChar={CATEGORY_RUNES[cat]} />
       <div className="space-y-2">
         {items.map((item, idx) => (
           <button
@@ -70,15 +77,19 @@ export default function CartaInteractive({ items, burger }: Props) {
           <section id="burger-mes" className="relative">
             <div className="absolute -inset-4 rounded-xl bg-gradient-to-r from-brand-pink/5 via-transparent to-brand-pink/5 pointer-events-none" />
             <div className="relative">
-              <div className="flex items-center gap-3 mb-4">
-                <h2 className="font-display text-3xl sm:text-4xl uppercase tracking-wider neon-text animate-flicker">
-                  Burger del Mes
-                </h2>
-                {burger.month_year && (
-                  <span className="font-display text-xs uppercase tracking-widest text-brand-pink border border-brand-pink/30 px-2 py-1 rounded-sm">
-                    {burger.month_year}
-                  </span>
-                )}
+              <div className="mb-4">
+                <span style={{ display: "block", color: "#D93060", opacity: 0.65, fontSize: "1.1rem", letterSpacing: "0.3em", marginBottom: 6 }}>ᛟ</span>
+                <div className="flex items-center gap-3">
+                  <h2 className="text-3xl sm:text-4xl neon-text animate-flicker">
+                    Burger del Mes
+                  </h2>
+                  {burger.month_year && (
+                    <span className="font-display text-xs uppercase tracking-widest text-brand-pink border border-brand-pink/30 px-2 py-1 rounded-sm">
+                      {burger.month_year}
+                    </span>
+                  )}
+                </div>
+                <div className="mt-2 h-[2px] w-16 bg-brand-pink shadow-[0_0_8px_#D93060]" />
               </div>
 
               <button

@@ -26,7 +26,7 @@ export default function MenuItemCard({ item, variant = "default" }: Props) {
       {/* Text */}
       <div className={cn("flex-1 min-w-0", variant === "featured" && "pl-2")}>
         <div className="flex items-start justify-between gap-2 mb-1">
-          <h3 className="font-display text-lg sm:text-xl uppercase tracking-wider text-[#F5F5F5] leading-tight flex-1">
+          <h3 className="font-display text-lg sm:text-xl uppercase tracking-wider text-brand-pink leading-tight flex-1">
             {item.name}
           </h3>
           <span className="font-display text-xl sm:text-2xl neon-text shrink-0 ml-1">
