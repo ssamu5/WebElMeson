@@ -184,18 +184,34 @@ h3, h4 {
    NUEVAS ANIMACIONES — dopamina
    ============================================================ */
 
-/* Glitch — rápido: 1s glitch, 2s wait */
+/* Glitch tradicional CRT — sin clip-path, solo desplazamiento + aberración cromática */
 @keyframes glitch {
-  0%, 33%, 100% { transform: none; text-shadow: var(--neon-text-glow); }
-  34% { transform: translate(-4px, 0) skew(-1.5deg); text-shadow: 4px 0 #f0477a, -4px 0 #a82248; clip-path: polygon(0 10%, 100% 10%, 100% 35%, 0 35%); }
-  36% { transform: translate(4px, 1px) skew(1.5deg);  text-shadow: -4px 0 #f0477a, 4px 0 #D93060; clip-path: polygon(0 55%, 100% 55%, 100% 80%, 0 80%); }
-  38% { transform: translate(-2px, 0); text-shadow: var(--neon-text-glow); clip-path: none; }
-  40% { transform: translate(3px, -1px); text-shadow: 3px 0 #f0477a; }
-  42% { transform: none; text-shadow: var(--neon-text-glow); clip-path: none; }
-  44% { transform: translate(-3px, 0) skew(-0.8deg); text-shadow: 3px 0 #f0477a, -3px 0 #D93060; }
-  46% { transform: none; text-shadow: var(--neon-text-glow); }
+  /* Estático */
+  0%, 55%, 100% {
+    transform: none;
+    text-shadow: var(--neon-text-glow);
+  }
+  /* Micro-temblor previo */
+  56% { transform: translateX(-1px); text-shadow: 1px 0 #f0477a, var(--neon-text-glow); }
+  57% { transform: translateX(1px);  text-shadow: -1px 0 #a82248, var(--neon-text-glow); }
+  58% { transform: translateX(-1px); text-shadow: var(--neon-text-glow); }
+  59% { transform: none; }
+  /* Glitch fuerte 1 */
+  60% { transform: translateX(-5px) skewX(-1deg); text-shadow: 5px 0 #f0477a, -5px 0 #a82248; }
+  61% { transform: translateX(5px)  skewX(1deg);  text-shadow: -5px 0 #f0477a, 5px 0 #ff6090; }
+  62% { transform: translateX(-3px); text-shadow: 3px 0 #f0477a, -3px 0 #a82248; }
+  63% { transform: translateX(3px);  text-shadow: -3px 0 #f0477a; }
+  /* Pausa breve */
+  64%, 65% { transform: none; text-shadow: var(--neon-text-glow); }
+  /* Glitch fuerte 2 */
+  66% { transform: translateX(6px) skewX(1.5deg);  text-shadow: -6px 0 #f0477a, 6px 0 #a82248; }
+  67% { transform: translateX(-6px) skewX(-1.5deg); text-shadow: 6px 0 #ff6090, -6px 0 #D93060; }
+  68% { transform: translateX(2px); text-shadow: -2px 0 #f0477a; }
+  /* Recuperación */
+  69% { transform: translateX(-1px); text-shadow: var(--neon-text-glow); }
+  70% { transform: none; text-shadow: var(--neon-text-glow); }
 }
-.animate-glitch { animation: glitch 3s linear infinite; }
+.animate-glitch { animation: glitch 4s linear infinite; }
 
 /* Shimmer en precios */
 @keyframes price-shimmer {
