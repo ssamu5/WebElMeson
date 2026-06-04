@@ -36,12 +36,7 @@ const imFell = localFont({
   fallback: ["Georgia", "serif"],
 });
 
-const metalLord = localFont({
-  src: "../../public/fonts/metal-lord.otf",
-  variable: "--font-metal",
-  display: "swap",
-  fallback: ["Impact", "Arial Black", "sans-serif"],
-});
+// Metal Lord se carga via @font-face en globals.css — más fiable para OTF
 
 export const metadata: Metadata = {
   title: {
@@ -67,7 +62,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es">
-      <body className={`${spaceGrotesk.variable} ${bebasNeue.variable} ${playfair.variable} ${imFell.variable} ${metalLord.variable} antialiased bg-dark text-[#F5F5F5] min-h-screen overflow-x-hidden`}>
+      <body className={`${spaceGrotesk.variable} ${bebasNeue.variable} ${playfair.variable} ${imFell.variable} antialiased bg-dark text-[#F5F5F5] min-h-screen overflow-x-hidden`}>
         <PublicLayout>{children}</PublicLayout>
       </body>
     </html>
