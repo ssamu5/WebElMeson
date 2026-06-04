@@ -184,19 +184,45 @@ h3, h4 {
    NUEVAS ANIMACIONES — dopamina
    ============================================================ */
 
-/* Glitch CRT — movimiento lento y constante, nunca estático */
+/* Glitch CRT — bursts abruptos frecuentes, linear para snap instantáneo */
 @keyframes glitch {
-  0%   { transform: translateX(0);      text-shadow: var(--neon-text-glow); }
-  12%  { transform: translateX(-2px);   text-shadow: 2px 0 rgba(240,71,122,0.7), var(--neon-text-glow); }
-  25%  { transform: translateX(1.5px);  text-shadow: -1.5px 0 rgba(168,34,72,0.6), var(--neon-text-glow); }
-  37%  { transform: translateX(-2.5px) skewX(-0.4deg); text-shadow: 2.5px 0 rgba(240,71,122,0.8), var(--neon-text-glow); }
-  50%  { transform: translateX(2px);    text-shadow: -2px 0 rgba(168,34,72,0.7), var(--neon-text-glow); }
-  62%  { transform: translateX(-1.5px) skewX(0.3deg); text-shadow: 1.5px 0 rgba(240,71,122,0.6), var(--neon-text-glow); }
-  75%  { transform: translateX(1px);    text-shadow: -1px 0 rgba(168,34,72,0.5), var(--neon-text-glow); }
-  87%  { transform: translateX(-1px);   text-shadow: 1px 0 rgba(240,71,122,0.5), var(--neon-text-glow); }
-  100% { transform: translateX(0);      text-shadow: var(--neon-text-glow); }
+  /* Estático */
+  0%, 7%  { transform: translateX(0);    text-shadow: var(--neon-text-glow); }
+  /* Burst 1 */
+  8%  { transform: translateX(-5px) skewX(-1deg); text-shadow: 5px 0 #f0477a, -3px 0 #a82248; }
+  9%  { transform: translateX(5px)  skewX(1deg);  text-shadow: -5px 0 #f0477a, 3px 0 #a82248; }
+  10% { transform: translateX(-3px);               text-shadow: 3px 0 #f0477a; }
+  11% { transform: translateX(2px);                text-shadow: var(--neon-text-glow); }
+  12% { transform: translateX(0);                  text-shadow: var(--neon-text-glow); }
+  /* Estático */
+  12%, 28% { transform: translateX(0); text-shadow: var(--neon-text-glow); }
+  /* Burst 2 */
+  29% { transform: translateX(6px);               text-shadow: -6px 0 #f0477a; }
+  30% { transform: translateX(-6px) skewX(-1deg); text-shadow: 6px 0 #a82248; }
+  31% { transform: translateX(3px);               text-shadow: -3px 0 #f0477a; }
+  32% { transform: translateX(0);                 text-shadow: var(--neon-text-glow); }
+  /* Estático */
+  32%, 49% { transform: translateX(0); text-shadow: var(--neon-text-glow); }
+  /* Burst 3 */
+  50% { transform: translateX(-4px);              text-shadow: 4px 0 #f0477a, -2px 0 #a82248; }
+  51% { transform: translateX(4px) skewX(0.8deg); text-shadow: -4px 0 #f0477a; }
+  52% { transform: translateX(-2px);              text-shadow: 2px 0 #f0477a; }
+  53% { transform: translateX(0);                 text-shadow: var(--neon-text-glow); }
+  /* Estático */
+  53%, 69% { transform: translateX(0); text-shadow: var(--neon-text-glow); }
+  /* Burst 4 rápido */
+  70% { transform: translateX(5px);              text-shadow: -5px 0 #f0477a; }
+  71% { transform: translateX(-5px);             text-shadow: 5px 0 #a82248; }
+  72% { transform: translateX(0);                text-shadow: var(--neon-text-glow); }
+  /* Estático */
+  72%, 88% { transform: translateX(0); text-shadow: var(--neon-text-glow); }
+  /* Burst 5 mini */
+  89% { transform: translateX(-3px) skewX(-0.5deg); text-shadow: 3px 0 #f0477a; }
+  90% { transform: translateX(3px);                 text-shadow: -3px 0 #a82248; }
+  91% { transform: translateX(0);                   text-shadow: var(--neon-text-glow); }
+  100% { transform: translateX(0); text-shadow: var(--neon-text-glow); }
 }
-.animate-glitch { animation: glitch 7s ease-in-out infinite; }
+.animate-glitch { animation: glitch 3.5s linear infinite; }
 
 /* Shimmer en precios */
 @keyframes price-shimmer {
