@@ -37,10 +37,8 @@ export default function Navbar() {
     <>
       <header
         className={cn(
-          "fixed top-9 left-0 right-0 z-50 transition-all duration-300",
-          scrolled || open
-            ? "bg-dark/95 backdrop-blur-lg border-b border-dark-border"
-            : "bg-transparent"
+          "fixed top-9 left-0 right-0 z-50 transition-all duration-300 bg-brand-pink",
+          (scrolled || open) && "shadow-[0_2px_12px_rgba(217,48,96,0.4)]"
         )}
       >
         <nav className="max-w-7xl mx-auto px-4 h-10 flex items-center justify-between">
@@ -55,7 +53,7 @@ export default function Navbar() {
                 sizes="40px"
               />
             </div>
-            <span className="hidden sm:block font-display text-xl text-[#F5F5F5] group-hover:text-brand-pink transition-colors duration-200 tracking-wider uppercase">
+            <span className="hidden sm:block font-display text-xl text-white tracking-wider uppercase">
               El Mesón
             </span>
           </Link>
@@ -69,8 +67,8 @@ export default function Navbar() {
                   className={cn(
                     "px-4 py-2 font-display text-sm uppercase tracking-wider transition-colors duration-200 neon-underline",
                     pathname === link.href
-                      ? "text-brand-pink active"
-                      : "text-[#F5F5F5] hover:text-brand-pink"
+                      ? "text-white font-bold"
+                      : "text-white/80 hover:text-white"
                   )}
                 >
                   {link.label}
@@ -82,7 +80,7 @@ export default function Navbar() {
           {/* Phone CTA (desktop) */}
           <a
             href="tel:948840354"
-            className="hidden md:flex items-center gap-2 text-sm font-display uppercase tracking-wider text-brand-pink hover:text-brand-pink-glow transition-colors duration-200"
+            className="hidden md:flex items-center gap-2 text-sm font-display uppercase tracking-wider text-white hover:text-white/80 transition-colors duration-200"
           >
             <PhoneIcon />
             948 840 354
@@ -97,19 +95,19 @@ export default function Navbar() {
           >
             <span
               className={cn(
-                "block w-6 h-0.5 bg-[#F5F5F5] transition-all duration-300 origin-center",
+                "block w-6 h-0.5 bg-white transition-all duration-300 origin-center",
                 open && "rotate-45 translate-y-2"
               )}
             />
             <span
               className={cn(
-                "block w-6 h-0.5 bg-[#F5F5F5] transition-all duration-300",
+                "block w-6 h-0.5 bg-white transition-all duration-300",
                 open && "opacity-0 scale-x-0"
               )}
             />
             <span
               className={cn(
-                "block w-6 h-0.5 bg-[#F5F5F5] transition-all duration-300 origin-center",
+                "block w-6 h-0.5 bg-white transition-all duration-300 origin-center",
                 open && "-rotate-45 -translate-y-2"
               )}
             />

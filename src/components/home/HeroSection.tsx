@@ -6,7 +6,7 @@ import Button from "@/components/ui/Button";
 
 export default function HeroSection() {
   return (
-    <section className="relative min-h-[100svh] flex items-center justify-center overflow-hidden scanlines">
+    <section className="relative min-h-[100svh] flex items-center justify-center overflow-hidden scanlines" style={{ marginTop: -76, paddingTop: 76 }}>
       {/* Background */}
       <div className="absolute inset-0">
         <Image
