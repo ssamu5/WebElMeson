@@ -11,6 +11,9 @@ const TABS = [
   { id: "postres", label: "Postres" },
 ];
 
+// banner(36) + navbar(40) = 76px
+const TOP_OFFSET = 76;
+
 export default function MenuCategoryTabs() {
   const [active, setActive] = useState("raciones");
 
@@ -18,23 +21,20 @@ export default function MenuCategoryTabs() {
     setActive(id);
     const el = document.getElementById(id);
     if (el) {
-      const offset = 80; // navbar height
-      const top = el.getBoundingClientRect().top + window.scrollY - offset;
+      const tabsHeight = 44;
+      const top = el.getBoundingClientRect().top + window.scrollY - TOP_OFFSET - tabsHeight - 8;
       window.scrollTo({ top, behavior: "smooth" });
     }
   }
 
-  // Update active tab based on scroll position
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
-          if (entry.isIntersecting) {
-            setActive(entry.target.id);
-          }
+          if (entry.isIntersecting) setActive(entry.target.id);
         }
       },
-      { rootMargin: "-80px 0px -60% 0px", threshold: 0 }
+      { rootMargin: `-${TOP_OFFSET + 50}px 0px -60% 0px`, threshold: 0 }
     );
 
     TABS.forEach(({ id }) => {
@@ -46,18 +46,18 @@ export default function MenuCategoryTabs() {
   }, []);
 
   return (
-    <div className="sticky top-16 z-30 bg-dark/95 backdrop-blur-lg border-b border-dark-border">
-      <div className="max-w-7xl mx-auto px-2 overflow-x-auto no-scrollbar">
-        <div className="flex gap-1 py-2 min-w-max">
+    <div className="sticky z-30 bg-dark/95 backdrop-blur-lg border-b border-dark-border" style={{ top: TOP_OFFSET }}>
+      <div className="max-w-7xl mx-auto px-2 overflow-x-hidden">
+        <div className="flex gap-1 py-1.5">
           {TABS.map((tab) => (
             <button
               key={tab.id}
               onClick={() => scrollToSection(tab.id)}
               className={cn(
-                "px-4 py-2 font-display text-sm uppercase tracking-wider rounded-sm transition-all duration-200 whitespace-nowrap",
+                "px-3 py-1.5 font-display text-xs sm:text-sm uppercase tracking-wider rounded-sm transition-all duration-200 whitespace-nowrap flex-shrink-0",
                 active === tab.id
-                  ? "bg-brand-pink text-white shadow-[0_0_10px_rgba(232,24,154,0.4)]"
-                  : "text-muted hover:text-[#F5F5F5] hover:bg-dark-elevated"
+                  ? "bg-brand-pink text-white"
+                  : "text-muted hover:text-[#f0ece4] hover:bg-dark-elevated"
               )}
             >
               {tab.label}

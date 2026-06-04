@@ -35,7 +35,7 @@ function CategorySection({
 }) {
   return (
     <section id={cat}>
-      <SectionTitle title={CATEGORY_LABELS[cat]} runeChar={CATEGORY_RUNES[cat]} />
+      <SectionTitle title={CATEGORY_LABELS[cat]} runeChar={CATEGORY_RUNES[cat]} centered />
       <div className="space-y-2">
         {items.map((item, idx) => (
           <button
@@ -77,9 +77,9 @@ export default function CartaInteractive({ items, burger }: Props) {
           <section id="burger-mes" className="relative">
             <div className="absolute -inset-4 rounded-xl bg-gradient-to-r from-brand-pink/5 via-transparent to-brand-pink/5 pointer-events-none" />
             <div className="relative">
-              <div className="mb-4">
-                <span style={{ display: "block", color: "#D93060", opacity: 0.65, fontSize: "1.1rem", letterSpacing: "0.3em", marginBottom: 6 }}>ᛟ</span>
-                <div className="flex items-center gap-3">
+              <div className="mb-4 text-center">
+                <span style={{ display: "block", color: "#D93060", opacity: 0.85, fontSize: "2rem", letterSpacing: "0.25em", marginBottom: 8, lineHeight: 1 }}>ᛟ</span>
+                <div className="flex items-center justify-center gap-3 flex-wrap">
                   <h2 className="text-3xl sm:text-4xl neon-text animate-flicker">
                     Burger del Mes
                   </h2>
@@ -89,7 +89,7 @@ export default function CartaInteractive({ items, burger }: Props) {
                     </span>
                   )}
                 </div>
-                <div className="mt-2 h-[2px] w-16 bg-brand-pink shadow-[0_0_8px_#D93060]" />
+                <div className="mt-2 h-[2px] w-16 bg-brand-pink shadow-[0_0_8px_#D93060] mx-auto" />
               </div>
 
               <button
@@ -104,9 +104,9 @@ export default function CartaInteractive({ items, burger }: Props) {
                       <div className="absolute inset-0 bg-gradient-to-t from-dark-elevated/90 via-dark-elevated/20 to-transparent" />
                     </div>
                   )}
-                  <div className="p-5">
-                    <div className="flex items-center justify-between gap-3 mb-2">
-                      <h3 className="font-display text-3xl sm:text-4xl uppercase tracking-wider text-[#F5F5F5]">
+                  <div className="p-5 text-center">
+                    <div className="flex items-center justify-center gap-3 mb-2 flex-wrap">
+                      <h3 className="font-display text-2xl sm:text-3xl uppercase tracking-wider text-[#F5F5F5] break-words w-full text-center">
                         {burger.name}
                       </h3>
                       <span className="font-display text-2xl neon-text shrink-0">

@@ -13,7 +13,7 @@ export default function SectionTitle({ title, subtitle, centered = false, classN
   return (
     <div className={cn("mb-8", centered && "text-center", className)}>
       {runeChar && (
-        <span style={{ display: "block", color: "#D93060", opacity: 0.65, fontSize: "1.1rem", letterSpacing: "0.3em", marginBottom: 6 }}>
+        <span style={{ display: "block", color: "#D93060", opacity: 0.85, fontSize: "2rem", letterSpacing: "0.25em", marginBottom: 8, lineHeight: 1 }}>
           {runeChar}
         </span>
       )}
