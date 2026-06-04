@@ -8,16 +8,6 @@ import { BurgerDelMes, MenuItem, TodaySpecial } from "@/types";
 
 export const revalidate = 60;
 
-function VikingDivider() {
-  return (
-    <div className="section-divider">
-      <span>⟨</span>
-      <span>ᚹ</span>
-      <span>⟩</span>
-    </div>
-  );
-}
-
 export default async function HomePage() {
   const supabase = await createClient();
 
@@ -31,13 +21,9 @@ export default async function HomePage() {
   return (
     <>
       <HeroSection />
-      <VikingDivider />
       <BurgerDelMesSection initial={burgerMes as BurgerDelMes | null} />
-      <VikingDivider />
       <BestSellers items={(featuredItems as MenuItem[]) ?? []} />
-      <VikingDivider />
       <FoodtruckTeaser initial={todayData as TodaySpecial | null} />
-      <VikingDivider />
       <InstagramCTA />
     </>
   );
