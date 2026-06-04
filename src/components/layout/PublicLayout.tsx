@@ -6,6 +6,7 @@ import Footer from "./Footer";
 import HoursBanner from "./HoursBanner";
 import BurgerRain from "@/components/effects/BurgerRain";
 import ScrollRevealInit from "@/components/effects/ScrollRevealInit";
+import TouchTrail from "@/components/effects/TouchTrail";
 
 export default function PublicLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
@@ -29,6 +30,8 @@ export default function PublicLayout({ children }: { children: React.ReactNode }
         </svg>
         948 840 354
       </a>
+      <TouchTrail />
+      <div className="scanline-sweep" aria-hidden="true" />
       <ScrollRevealInit />
     </>
   );
