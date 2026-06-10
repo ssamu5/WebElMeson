@@ -3,7 +3,6 @@ import Image from "next/image";
 import { createClient } from "@/lib/supabase/server";
 import TodayLocation from "@/components/foodtruck/TodayLocation";
 import FoodtruckCalendar from "@/components/foodtruck/FoodtruckCalendar";
-import QRCodeBlock from "@/components/foodtruck/QRCodeBlock";
 import TodayBurgersList from "@/components/foodtruck/TodayBurgersList";
 import { FoodtruckLocation, TodaySpecial } from "@/types";
 
@@ -14,7 +13,6 @@ export const metadata: Metadata = {
 export const revalidate = 60;
 
 const WA_URL = "https://wa.me/34690657610?text=Hola%2C%20me%20gustar%C3%ADa%20contar%20con%20El%20Mes%C3%B3n%20Smashburgers%20para%20un%20evento.%20Te%20cuento%20la%20situaci%C3%B3n%3A";
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.elmesonsmashburgers.es";
 
 export default async function FoodtruckPage() {
   const supabase = await createClient();
@@ -65,18 +63,15 @@ export default async function FoodtruckPage() {
       <TodayLocation initial={todayData as TodaySpecial | null} />
       <div className="border-t border-dark-border/50" />
 
-      {/* Burgers de hoy + QR */}
+      {/* Burgers de hoy */}
       <section id="burgers-hoy" className="py-16 px-4 border-b border-dark-border/50">
         <div className="max-w-2xl mx-auto text-center">
           <h2 className="font-playfair text-3xl sm:text-4xl uppercase tracking-wider neon-text mb-2">
             Burgers de Hoy en la Foodtruck
           </h2>
           <p className="text-muted text-sm mb-8 max-w-md mx-auto">
-            Escanea el código QR para ver la selección de burgers que tenemos hoy en la foodtruck.
+            Esto es lo que tenemos hoy en la foodtruck.
           </p>
-          <div className="flex justify-center mb-8">
-            <QRCodeBlock url={`${SITE_URL}/foodtruck#burgers-hoy`} size={220} />
-          </div>
           <TodayBurgersList initial={todayData as TodaySpecial | null} />
         </div>
       </section>
