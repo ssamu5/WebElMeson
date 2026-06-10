@@ -47,14 +47,14 @@ export default function MenuCategoryTabs() {
 
   return (
     <div className="sticky z-30 bg-dark/95 backdrop-blur-lg border-b border-dark-border" style={{ top: TOP_OFFSET }}>
-      <div className="max-w-7xl mx-auto px-2 overflow-x-hidden">
-        <div className="flex gap-1 py-1.5">
+      <div className="max-w-7xl mx-auto px-2 overflow-x-auto no-scrollbar snap-x snap-mandatory">
+        <div className="flex gap-1 py-1.5 w-max">
           {TABS.map((tab) => (
             <button
               key={tab.id}
               onClick={() => scrollToSection(tab.id)}
               className={cn(
-                "px-3 py-1.5 font-display text-xs sm:text-sm uppercase tracking-wider rounded-sm transition-all duration-200 whitespace-nowrap flex-shrink-0",
+                "px-3 py-1.5 font-rawhide text-xs sm:text-sm uppercase tracking-wider rounded-sm transition-all duration-200 whitespace-nowrap flex-shrink-0 snap-start",
                 active === tab.id
                   ? "bg-brand-pink text-white"
                   : "text-muted hover:text-[#f0ece4] hover:bg-dark-elevated"

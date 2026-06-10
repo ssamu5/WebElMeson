@@ -29,6 +29,8 @@ const config: Config = {
         playfair: ["var(--font-playfair)", "Georgia", "serif"],
         imfell: ["var(--font-imfell)", "Georgia", "serif"],
         metal: ["var(--font-metal)", "Impact", "sans-serif"],
+        rawhide: ["var(--font-rawhide)", "Impact", "sans-serif"],
+        garamond: ["var(--font-garamond)", "Georgia", "serif"],
       },
       animation: {
         flicker: "flicker 3s linear infinite",

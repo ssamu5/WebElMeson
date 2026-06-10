@@ -135,10 +135,10 @@ export default function Navbar() {
               key={link.href}
               href={link.href}
               className={cn(
-                "metal text-4xl transition-all duration-200 py-2",
+                "metal text-4xl tracking-wider transition-all duration-200 py-2",
                 "animate-slide-up",
                 pathname === link.href
-                  ? "text-brand-pink neon-text"
+                  ? "text-brand-pink"
                   : "text-[#F5F5F5] hover:text-brand-pink"
               )}
               style={{ animationDelay: `${i * 60}ms` }}

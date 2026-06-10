@@ -17,7 +17,7 @@ export default function InstagramCTA() {
           href={SITE_CONFIG.instagram.url}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-3 font-display text-lg uppercase tracking-wider text-[#F5F5F5] border-2 border-brand-pink/50 px-8 py-4 hover:border-brand-pink hover:text-brand-pink hover:shadow-[0_0_16px_rgba(232,24,154,0.4)] transition-all duration-300"
+          className="inline-flex items-center gap-3 font-rawhide text-lg uppercase tracking-wider text-[#F5F5F5] border-2 border-brand-pink/50 px-8 py-4 hover:border-brand-pink hover:text-brand-pink hover:shadow-[0_0_16px_rgba(232,24,154,0.4)] transition-all duration-300"
         >
           <InstagramIcon />
           {SITE_CONFIG.instagram.handle}

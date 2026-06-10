@@ -6,7 +6,6 @@ import Link from "next/link";
 import { createClient } from "@/lib/supabase/client";
 import { TodaySpecial } from "@/types";
 import Button from "@/components/ui/Button";
-import { SITE_CONFIG } from "@/lib/constants/siteConfig";
 
 interface Props {
   initial: TodaySpecial | null;
@@ -46,14 +45,9 @@ export default function FoodtruckTeaser({ initial }: Props) {
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 py-20">
         <div className="max-w-xl">
-          {/* Label */}
-          <span className="font-display text-xs uppercase tracking-[0.3em] text-brand-pink mb-4 block">
-            🚚 Foodtruck 2026
-          </span>
-
           <h2 className="metal text-5xl sm:text-6xl md:text-7xl text-[#F5F5F5] mb-4 leading-none">
-            El Mesón,<br />
-            <span className="neon-text">Donde Tú Estés</span>
+            Nuestra<br />
+            <span className="neon-text">Foodtruck</span>
           </h2>
 
           {/* Today's location */}
@@ -73,11 +67,8 @@ export default function FoodtruckTeaser({ initial }: Props) {
             </p>
           )}
 
-          {/* Hours reminder */}
-          <p className="text-muted text-sm mb-6">{SITE_CONFIG.hours}</p>
-
           <Link href="/foodtruck">
-            <Button variant="neon" size="lg">
+            <Button variant="neon" size="lg" className="font-rawhide">
               Ver Calendario y Ubicación
             </Button>
           </Link>

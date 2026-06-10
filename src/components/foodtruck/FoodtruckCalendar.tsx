@@ -66,7 +66,7 @@ export default function FoodtruckCalendar({ initial }: Props) {
   return (
     <section className="py-16 px-4">
       <div className="max-w-4xl mx-auto">
-        <h2 className="font-display text-4xl sm:text-5xl uppercase tracking-wider text-[#F5F5F5] mb-2">
+        <h2 className="font-playfair text-4xl sm:text-5xl uppercase tracking-wider text-[#F5F5F5] mb-2">
           Calendario
         </h2>
         <div className="mt-1 mb-8 h-[2px] w-16 bg-brand-pink shadow-[0_0_8px_#E8189A]" />
@@ -81,7 +81,7 @@ export default function FoodtruckCalendar({ initial }: Props) {
             >
               <ChevronLeft />
             </button>
-            <h3 className="font-display text-xl uppercase tracking-wider text-[#F5F5F5]">
+            <h3 className="font-rawhide text-xl uppercase tracking-wider text-[#F5F5F5]">
               {formatMonthYear(`${year}-${String(month + 1).padStart(2, "0")}-01`)}
             </h3>
             <button
@@ -96,7 +96,7 @@ export default function FoodtruckCalendar({ initial }: Props) {
           {/* Day headers */}
           <div className="grid grid-cols-7 border-b border-dark-border">
             {["Lun", "Mar", "Mié", "Jue", "Vie", "Sáb", "Dom"].map((d) => (
-              <div key={d} className="py-2 text-center text-xs font-display uppercase tracking-wider text-muted">
+              <div key={d} className="py-2 text-center text-xs font-rawhide uppercase tracking-wider text-muted">
                 {d}
               </div>
             ))}
@@ -129,7 +129,7 @@ export default function FoodtruckCalendar({ initial }: Props) {
                 >
                   <span
                     className={cn(
-                      "w-7 h-7 flex items-center justify-center rounded-full text-sm",
+                      "w-7 h-7 flex items-center justify-center rounded-full text-sm font-rawhide",
                       isToday && !isSelected && "border border-brand-pink text-brand-pink",
                       isSelected && "bg-brand-pink text-white shadow-[0_0_8px_#E8189A]",
                       !isToday && !isSelected && hasEvent && "text-[#F5F5F5]",
@@ -151,14 +151,14 @@ export default function FoodtruckCalendar({ initial }: Props) {
             <div className="border-t border-brand-pink/30 bg-dark-elevated px-4 sm:px-6 py-4 animate-slide-up">
               <div className="flex items-start justify-between gap-4">
                 <div>
-                  <p className="font-display text-xl uppercase tracking-wider text-[#F5F5F5]">
+                  <p className="font-rawhide text-xl uppercase tracking-wider text-[#F5F5F5]">
                     {selectedEvent.location_name}
                   </p>
                   <p className="text-muted text-sm mt-1">{formatDateEs(selectedEvent.event_date)}</p>
                   {selectedEvent.address && (
                     <p className="text-muted text-xs mt-1">{selectedEvent.address}</p>
                   )}
-                  <p className="text-brand-pink text-sm font-display uppercase tracking-wider mt-2">
+                  <p className="text-brand-pink text-sm font-rawhide uppercase tracking-wider mt-2">
                     {selectedEvent.start_time?.slice(0, 5)} – {selectedEvent.end_time?.slice(0, 5)}
                   </p>
                   {selectedEvent.special_note && (
@@ -170,7 +170,7 @@ export default function FoodtruckCalendar({ initial }: Props) {
                     href={selectedEvent.maps_url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="shrink-0 flex items-center gap-1.5 text-xs font-display uppercase tracking-wider text-brand-pink border border-brand-pink/40 px-3 py-2 hover:bg-brand-pink hover:text-white transition-all duration-200"
+                    className="shrink-0 flex items-center gap-1.5 text-xs font-rawhide uppercase tracking-wider text-brand-pink border border-brand-pink/40 px-3 py-2 hover:bg-brand-pink hover:text-white transition-all duration-200"
                   >
                     <MapIcon />
                     Ir

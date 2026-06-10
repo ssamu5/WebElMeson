@@ -24,7 +24,7 @@ export default function BestSellers({ items }: Props) {
 
       <div className="flex justify-center mt-10">
         <Link href="/carta">
-          <Button variant="neon" size="md">Ver la Carta Completa</Button>
+          <Button variant="neon" size="md" className="font-rawhide">Ver la Carta Completa</Button>
         </Link>
       </div>
     </section>
@@ -45,12 +45,12 @@ function BestSellerCard({ item }: { item: MenuItem }) {
           />
           <div className="absolute inset-0 bg-gradient-to-t from-dark via-dark/10 to-transparent" />
           <div className="absolute top-2 left-2">
-            <span className="font-display text-[10px] uppercase tracking-widest text-white bg-brand-pink px-2 py-0.5 rounded-sm">
+            <span className="font-rawhide text-[10px] uppercase tracking-widest text-white bg-brand-pink px-2 py-0.5 rounded-sm">
               Best Seller
             </span>
           </div>
           <div className="absolute bottom-2 right-2">
-            <span className="font-display text-xl price-shimmer drop-shadow-[0_0_8px_rgba(217,48,96,0.9)]">
+            <span className="font-rawhide text-xl price-shimmer drop-shadow-[0_0_8px_rgba(217,48,96,0.9)]">
               {formatPriceShort(item.price)}
             </span>
           </div>
@@ -65,7 +65,7 @@ function BestSellerCard({ item }: { item: MenuItem }) {
           <p className="text-muted text-xs leading-relaxed mt-1 line-clamp-2">{item.description}</p>
         )}
         {!item.image_url && (
-          <span className="font-display text-xl neon-text mt-2 block">{formatPriceShort(item.price)}</span>
+          <span className="font-rawhide text-xl neon-text mt-2 block">{formatPriceShort(item.price)}</span>
         )}
       </div>
     </div>

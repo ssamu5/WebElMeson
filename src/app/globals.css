@@ -43,7 +43,7 @@ body {
   background-color: var(--color-bg);
   background-image: radial-gradient(ellipse 80% 40% at 50% 0%, rgba(217,48,96,0.06) 0%, transparent 60%);
   color: var(--color-text);
-  font-family: var(--font-inter), system-ui, -apple-system, sans-serif;
+  font-family: var(--font-garamond), Georgia, serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;

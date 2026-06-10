@@ -31,8 +31,8 @@ export default function TodayLocation({ initial }: Props) {
         {/* Section label */}
         <div className="flex items-center gap-3 mb-6">
           <div className={`w-3 h-3 rounded-full ${isToday ? "bg-green-400 animate-pulse shadow-[0_0_8px_#4ade80]" : "bg-muted"}`} />
-          <span className="font-display text-xs uppercase tracking-[0.3em] text-[#F5F5F5]">
-            {isToday ? "Abiertos Ahora · Hoy Estamos En" : "Próxima Parada"}
+          <span className="font-playfair text-xs uppercase tracking-[0.3em] text-[#F5F5F5]">
+            {isToday ? "Abiertos Ahora · Hoy Estamos En" : "Dónde Estamos Hoy"}
           </span>
         </div>
 

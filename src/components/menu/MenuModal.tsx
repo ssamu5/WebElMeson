@@ -75,16 +75,16 @@ export default function MenuModal({ item, onClose }: Props) {
           <div className="px-5 pt-4 pb-24 space-y-3">
             {/* Name + price */}
             <div className="flex items-start justify-between gap-3">
-              <h2 className="font-display text-3xl sm:text-4xl uppercase tracking-wider text-[#F5F5F5] leading-tight flex-1">
+              <h2 className="font-rawhide text-3xl sm:text-4xl uppercase tracking-wider text-[#F5F5F5] leading-tight flex-1">
                 {item.name}
               </h2>
-              <span className="font-display text-3xl sm:text-4xl neon-text shrink-0 pt-1">
+              <span className="font-rawhide text-3xl sm:text-4xl neon-text shrink-0 pt-1">
                 {formatPriceShort(item.price)}
               </span>
             </div>
 
             {"month_year" in item && item.month_year && (
-              <span className="inline-block font-display text-xs uppercase tracking-widest text-brand-pink border border-brand-pink/40 px-3 py-1 rounded-sm">
+              <span className="inline-block font-rawhide text-xs uppercase tracking-widest text-brand-pink border border-brand-pink/40 px-3 py-1 rounded-sm">
                 {item.month_year}
               </span>
             )}

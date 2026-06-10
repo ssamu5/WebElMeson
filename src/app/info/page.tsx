@@ -12,7 +12,7 @@ export default function InfoPage() {
     <div className="min-h-screen">
       <div className="relative py-16 px-4 text-center border-b border-dark-border overflow-hidden">
         <div className="absolute inset-0 bg-gradient-radial from-brand-pink/5 to-transparent" />
-        <h1 className="relative metal text-6xl sm:text-7xl md:text-8xl text-[#F5F5F5]">
+        <h1 className="relative metal text-6xl sm:text-7xl md:text-8xl tracking-[0.15em] text-[#F5F5F5]">
           Nuestra Historia
         </h1>
       </div>
@@ -28,15 +28,16 @@ export default function InfoPage() {
             <p>
               Cada burger es un homenaje a la técnica: 90g de carne aplastada a fuego alto en plancha de acero, sellado perfecto, costra caramelizada. Todo lo que llevan lleva sentido.
             </p>
-            <p className="font-display text-brand-pink uppercase tracking-wider text-lg">
-              {SITE_CONFIG.subTagline}
+            <p className="font-rawhide uppercase tracking-wider text-lg sm:text-xl neon-text">
+              <span className="text-3xl sm:text-4xl align-middle text-brand-pink-glow">#</span>
+              {SITE_CONFIG.subTagline.replace(/^#/, "")}
             </p>
           </div>
         </section>
 
         {/* Values */}
         <section>
-          <h2 className="font-display text-3xl uppercase tracking-wider text-[#F5F5F5] mb-2">Cómo trabajamos</h2>
+          <h2 className="font-playfair text-3xl uppercase tracking-wider text-[#F5F5F5] mb-2">Cómo trabajamos</h2>
           <div className="mt-1 mb-8 h-[2px] w-16 bg-brand-pink shadow-[0_0_8px_#E8189A]" />
           <div className="grid sm:grid-cols-3 gap-6">
             {[
@@ -46,7 +47,7 @@ export default function InfoPage() {
               },
               {
                 title: "Técnica Smash",
-                text: "Aplastamos la carne en plancha a alta temperatura para crear una costra perfecta en cada burger.",
+                text: "Aplastamos la carne en plancha a fuego alto para conseguir el \"lacy edge\": ese borde fino, crujiente y caramelizado que marca la diferencia en cada bocado.",
               },
               {
                 title: "Identidad Propia",
@@ -55,40 +56,36 @@ export default function InfoPage() {
             ].map((val) => (
               <div key={val.title} className="glass-card rounded-lg p-6 hover:border-brand-pink/30 transition-all duration-300">
                 <div className="w-8 h-[2px] bg-brand-pink mb-4 shadow-[0_0_6px_#E8189A]" />
-                <h3 className="font-display text-lg uppercase tracking-wider text-[#F5F5F5] mb-2">{val.title}</h3>
+                <h3 className="font-rawhide text-lg uppercase tracking-wider text-[#F5F5F5] mb-2">{val.title}</h3>
                 <p className="text-muted text-sm leading-relaxed">{val.text}</p>
               </div>
             ))}
           </div>
         </section>
 
-        {/* Photos grid */}
+        {/* Merchandising */}
         <section>
-          <h2 className="font-display text-3xl uppercase tracking-wider text-[#F5F5F5] mb-2">Nuestra Imagen</h2>
+          <h2 className="font-playfair text-3xl uppercase tracking-wider text-[#F5F5F5] mb-2">Nuestra Imagen</h2>
           <div className="mt-1 mb-6 h-[2px] w-16 bg-brand-pink shadow-[0_0_8px_#E8189A]" />
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-            {[
-              { src: "/images/foodtruck-izquierda.webp", alt: "Foodtruck lateral" },
-              { src: "/images/foodtruck-derecha.webp", alt: "Foodtruck derecha" },
-              { src: "/images/camiseta.webp", alt: "Camiseta El Mesón" },
-            ].map((img) => (
-              <div key={img.src} className="relative aspect-square rounded-lg overflow-hidden group">
-                <Image
-                  src={img.src}
-                  alt={img.alt}
-                  fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-500 opacity-80 group-hover:opacity-100"
-                  sizes="(max-width: 640px) 50vw, 33vw"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-dark/40 to-transparent group-hover:opacity-0 transition-opacity duration-300" />
-              </div>
-            ))}
+          <div className="relative aspect-video sm:aspect-[21/9] rounded-lg overflow-hidden">
+            <Image
+              src="/images/camiseta.webp"
+              alt="Merchandising El Mesón"
+              fill
+              className="object-cover blur-md scale-110 opacity-50"
+              sizes="(max-width: 768px) 100vw, 768px"
+            />
+            <div className="absolute inset-0 flex items-center justify-center bg-dark/40">
+              <span className="metal text-5xl sm:text-6xl md:text-7xl tracking-wider neon-text">
+                Próximamente
+              </span>
+            </div>
           </div>
         </section>
 
         {/* Contact */}
         <section>
-          <h2 className="font-display text-3xl uppercase tracking-wider text-[#F5F5F5] mb-2">Contacto</h2>
+          <h2 className="font-playfair text-3xl uppercase tracking-wider text-[#F5F5F5] mb-2">Contacto</h2>
           <div className="mt-1 mb-6 h-[2px] w-16 bg-brand-pink shadow-[0_0_8px_#E8189A]" />
           <div className="grid md:grid-cols-2 gap-8">
             <div className="space-y-4">

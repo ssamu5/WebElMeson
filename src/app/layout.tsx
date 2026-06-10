@@ -36,6 +36,25 @@ const imFell = localFont({
   fallback: ["Georgia", "serif"],
 });
 
+const rawhide = localFont({
+  src: "../../public/fonts/rawhide.otf",
+  variable: "--font-rawhide",
+  display: "swap",
+  fallback: ["Impact", "sans-serif"],
+});
+
+const appleGaramond = localFont({
+  src: [
+    { path: "../../public/fonts/apple-garamond.ttf", weight: "400", style: "normal" },
+    { path: "../../public/fonts/apple-garamond-italic.ttf", weight: "400", style: "italic" },
+    { path: "../../public/fonts/apple-garamond-bold.ttf", weight: "700", style: "normal" },
+    { path: "../../public/fonts/apple-garamond-bolditalic.ttf", weight: "700", style: "italic" },
+  ],
+  variable: "--font-garamond",
+  display: "swap",
+  fallback: ["Georgia", "Times New Roman", "serif"],
+});
+
 // Metal Lord se carga via @font-face en globals.css — más fiable para OTF
 
 export const metadata: Metadata = {
@@ -62,7 +81,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es">
-      <body className={`${spaceGrotesk.variable} ${bebasNeue.variable} ${playfair.variable} ${imFell.variable} antialiased bg-dark text-[#F5F5F5] min-h-screen overflow-x-hidden`}>
+      <body className={`${spaceGrotesk.variable} ${bebasNeue.variable} ${playfair.variable} ${imFell.variable} ${rawhide.variable} ${appleGaramond.variable} antialiased bg-dark text-[#F5F5F5] min-h-screen overflow-x-hidden`}>
         <PublicLayout>{children}</PublicLayout>
       </body>
     </html>

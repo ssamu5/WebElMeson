@@ -3,6 +3,8 @@ import Image from "next/image";
 import { createClient } from "@/lib/supabase/server";
 import TodayLocation from "@/components/foodtruck/TodayLocation";
 import FoodtruckCalendar from "@/components/foodtruck/FoodtruckCalendar";
+import QRCodeBlock from "@/components/foodtruck/QRCodeBlock";
+import TodayBurgersList from "@/components/foodtruck/TodayBurgersList";
 import { FoodtruckLocation, TodaySpecial } from "@/types";
 
 export const metadata: Metadata = {
@@ -12,6 +14,7 @@ export const metadata: Metadata = {
 export const revalidate = 60;
 
 const WA_URL = "https://wa.me/34690657610?text=Hola%2C%20me%20gustar%C3%ADa%20contar%20con%20El%20Mes%C3%B3n%20Smashburgers%20para%20un%20evento.%20Te%20cuento%20la%20situaci%C3%B3n%3A";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.elmesonsmashburgers.es";
 
 export default async function FoodtruckPage() {
   const supabase = await createClient();
@@ -31,10 +34,10 @@ export default async function FoodtruckPage() {
         </div>
         <div className="absolute top-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-brand-pink/50 to-transparent" />
         <div className="relative z-10 text-center px-4 py-16 sm:py-24">
-          <h1 className="metal text-6xl sm:text-7xl md:text-8xl text-white leading-none drop-shadow-[0_2px_20px_rgba(0,0,0,0.8)]">
-            El Mesón,
+          <h1 className="metal text-6xl sm:text-7xl md:text-8xl neon-text leading-none drop-shadow-[0_2px_20px_rgba(0,0,0,0.8)]">
+            Foodtruck
           </h1>
-          <p className="font-display text-3xl sm:text-4xl uppercase tracking-wider neon-text animate-flicker mt-1">
+          <p className="font-playfair text-3xl sm:text-4xl uppercase tracking-wider text-[#F5F5F5] mt-1">
             Donde Tú Estés
           </p>
           <p className="text-[#f0ece4]/70 text-sm sm:text-base mt-4 max-w-sm mx-auto leading-relaxed">
@@ -47,12 +50,12 @@ export default async function FoodtruckPage() {
       <section className="border-y border-dark-border bg-dark-secondary">
         <div className="max-w-4xl mx-auto grid grid-cols-3 divide-x divide-dark-border">
           {[
-            { label: "Burgers / hora", value: "200+" },
+            { label: "Burgers / hora", value: "100" },
             { label: "Años de experiencia", value: "4" },
             { label: "Hechas al momento", value: "45s" },
           ].map(({ label, value }) => (
             <div key={label} className="flex flex-col items-center justify-center py-6 px-3 text-center gap-1">
-              <span className="font-display text-3xl sm:text-4xl price-shimmer animate-number-pop">{value}</span>
+              <span className="font-rawhide text-3xl sm:text-4xl price-shimmer animate-number-pop">{value}</span>
               <span className="text-muted text-[11px] sm:text-xs uppercase tracking-wider leading-tight">{label}</span>
             </div>
           ))}
@@ -61,6 +64,23 @@ export default async function FoodtruckPage() {
 
       <TodayLocation initial={todayData as TodaySpecial | null} />
       <div className="border-t border-dark-border/50" />
+
+      {/* Burgers de hoy + QR */}
+      <section id="burgers-hoy" className="py-16 px-4 border-b border-dark-border/50">
+        <div className="max-w-2xl mx-auto text-center">
+          <h2 className="font-playfair text-3xl sm:text-4xl uppercase tracking-wider neon-text mb-2">
+            Burgers de Hoy en la Foodtruck
+          </h2>
+          <p className="text-muted text-sm mb-8 max-w-md mx-auto">
+            Escanea el código QR para ver la selección de burgers que tenemos hoy en la foodtruck.
+          </p>
+          <div className="flex justify-center mb-8">
+            <QRCodeBlock url={`${SITE_URL}/foodtruck#burgers-hoy`} size={220} />
+          </div>
+          <TodayBurgersList initial={todayData as TodaySpecial | null} />
+        </div>
+      </section>
+
       <FoodtruckCalendar initial={(locationsData as FoodtruckLocation[]) ?? []} />
 
       {/* Event booking CTA */}
@@ -76,7 +96,7 @@ export default async function FoodtruckPage() {
             href={WA_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-3 bg-[#25D366] text-white font-display text-lg uppercase tracking-wider px-8 py-4 rounded-[2px] hover:bg-[#1aad54] active:scale-95 transition-all duration-200 shadow-[0_0_20px_rgba(37,211,102,0.3)]"
+            className="inline-flex items-center gap-3 bg-[#25D366] text-white font-rawhide text-lg uppercase tracking-wider px-8 py-4 rounded-[2px] hover:bg-[#1aad54] active:scale-95 transition-all duration-200 shadow-[0_0_20px_rgba(37,211,102,0.3)]"
           >
             <WhatsAppIcon />
             Escríbenos por WhatsApp

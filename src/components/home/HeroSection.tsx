@@ -41,15 +41,15 @@ export default function HeroSection() {
         {/* CTAs */}
         <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto mt-2">
           <Link href="/carta" className="w-full sm:w-auto">
-            <Button variant="primary" size="lg" className="w-full btn-shine ripple-container">Ver la Carta</Button>
+            <Button variant="primary" size="lg" className="w-full btn-shine ripple-container font-playfair">Carta</Button>
           </Link>
           <Link href="/foodtruck" className="w-full sm:w-auto">
-            <Button variant="neon" size="lg" className="w-full ripple-container">¿Dónde estamos hoy?</Button>
+            <Button variant="neon" size="lg" className="w-full ripple-container font-playfair">Foodtruck</Button>
           </Link>
         </div>
 
-        <p className="text-muted text-[11px] font-display uppercase tracking-[0.3em] mt-1">
-          #TheBestF*ckingBurger
+        <p className="text-muted text-xs font-rawhide uppercase tracking-[0.3em] mt-1">
+          <span className="text-brand-pink-glow text-xl align-middle">#</span>TheBestF*ckingBurger
         </p>
       </div>
     </section>
