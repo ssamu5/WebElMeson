@@ -28,7 +28,7 @@ export default function InfoPage() {
             <p>
               Cada burger es un homenaje a la técnica: 90g de carne aplastada a fuego alto en plancha de acero, sellado perfecto, costra caramelizada. Todo lo que llevan lleva sentido.
             </p>
-            <p className="font-rawhide uppercase tracking-wider text-lg sm:text-xl neon-text">
+            <p className="font-rawhide uppercase tracking-wider text-lg sm:text-xl neon-text-soft">
               <span className="text-3xl sm:text-4xl align-middle text-brand-pink-glow">#</span>
               {SITE_CONFIG.subTagline.replace(/^#/, "")}
             </p>
@@ -75,8 +75,8 @@ export default function InfoPage() {
               className="object-cover blur-md scale-110 opacity-50"
               sizes="(max-width: 768px) 100vw, 768px"
             />
-            <div className="absolute inset-0 flex items-center justify-center bg-dark/40">
-              <span className="metal text-5xl sm:text-6xl md:text-7xl tracking-wider neon-text">
+            <div className="absolute inset-0 flex items-center justify-center bg-dark/40 px-4">
+              <span className="metal text-3xl sm:text-5xl md:text-7xl tracking-wider neon-text text-center">
                 Próximamente
               </span>
             </div>

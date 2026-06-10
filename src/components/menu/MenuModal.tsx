@@ -78,7 +78,7 @@ export default function MenuModal({ item, onClose }: Props) {
               <h2 className="font-rawhide text-3xl sm:text-4xl uppercase tracking-wider text-[#F5F5F5] leading-tight flex-1">
                 {item.name}
               </h2>
-              <span className="font-rawhide text-3xl sm:text-4xl neon-text shrink-0 pt-1">
+              <span className="font-rawhide text-3xl sm:text-4xl neon-text-soft shrink-0 pt-1">
                 {formatPriceShort(item.price)}
               </span>
             </div>

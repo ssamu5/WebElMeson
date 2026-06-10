@@ -65,7 +65,7 @@ function BestSellerCard({ item }: { item: MenuItem }) {
           <p className="text-muted text-xs leading-relaxed mt-1 line-clamp-2">{item.description}</p>
         )}
         {!item.image_url && (
-          <span className="font-rawhide text-xl neon-text mt-2 block">{formatPriceShort(item.price)}</span>
+          <span className="font-rawhide text-xl neon-text-soft mt-2 block">{formatPriceShort(item.price)}</span>
         )}
       </div>
     </div>

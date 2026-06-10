@@ -23,7 +23,7 @@ export default async function CartaPage() {
         <h1 className="relative metal text-6xl sm:text-8xl text-[#F5F5F5]" style={{ letterSpacing: "0.08em" }}>
           La Carta
         </h1>
-        <p className="relative text-muted text-xs sm:text-sm mt-2 uppercase tracking-widest font-display">
+        <p className="relative text-muted text-xs sm:text-sm mt-2 uppercase tracking-widest font-garamond">
           Fustiñana, Navarra · Ingredientes frescos cada día
         </p>
       </div>

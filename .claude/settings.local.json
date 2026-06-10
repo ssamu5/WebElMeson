@@ -21,7 +21,9 @@
       "Bash(cp \"/c/Users/samul/Downloads/_garamond_extract/AppleGaramond.ttf\" \"public/fonts/apple-garamond.ttf\")",
       "Bash(cp \"/c/Users/samul/Downloads/_garamond_extract/AppleGaramond-Bold.ttf\" \"public/fonts/apple-garamond-bold.ttf\")",
       "Bash(cp \"/c/Users/samul/Downloads/_garamond_extract/AppleGaramond-Italic.ttf\" \"public/fonts/apple-garamond-italic.ttf\")",
-      "Bash(cp \"/c/Users/samul/Downloads/_garamond_extract/AppleGaramond-BoldItalic.ttf\" \"public/fonts/apple-garamond-bolditalic.ttf\")"
+      "Bash(cp \"/c/Users/samul/Downloads/_garamond_extract/AppleGaramond-BoldItalic.ttf\" \"public/fonts/apple-garamond-bolditalic.ttf\")",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" http://localhost:3000/foodtruck)",
+      "Bash(curl -s http://localhost:3000/foodtruck)"
     ]
   }
 }

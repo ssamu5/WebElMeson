@@ -54,7 +54,7 @@ export default function BurgerDelMesSection({ initial }: Props) {
 
       {/* Text — clearly below the photo */}
       <div className="px-4 py-8 text-center max-w-2xl mx-auto">
-        <h2 className="font-rawhide text-4xl sm:text-5xl md:text-7xl neon-text mb-3 leading-tight break-words w-full">
+        <h2 className="font-rawhide text-3xl sm:text-4xl md:text-5xl neon-text-soft mb-3 leading-tight break-words w-full">
           {burger.name}
         </h2>
 
@@ -71,7 +71,7 @@ export default function BurgerDelMesSection({ initial }: Props) {
         )}
 
         <div className="flex items-center justify-center gap-5">
-          <span className="font-rawhide text-4xl neon-text">{formatPriceShort(burger.price)}</span>
+          <span className="font-rawhide text-4xl neon-text-soft">{formatPriceShort(burger.price)}</span>
           <Link href="/carta#burger-mes">
             <Button variant="primary" size="md" className="font-rawhide">Ver en la Carta</Button>
           </Link>

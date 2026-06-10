@@ -7,14 +7,14 @@ interface Props {
 
 export default function QRCodeBlock({ url, size = 200 }: Props) {
   const qr = QRCode.create(url, { errorCorrectionLevel: "M" });
-  const { size: count, data, get } = qr.modules;
-  void data;
+  const modules = qr.modules;
+  const count = modules.size;
   const cell = size / count;
 
   let path = "";
   for (let row = 0; row < count; row++) {
     for (let col = 0; col < count; col++) {
-      if (get(row, col)) {
+      if (modules.get(row, col)) {
         path += `M${col * cell},${row * cell}h${cell}v${cell}h-${cell}z `;
       }
     }

@@ -151,7 +151,7 @@ export default function CartaInteractive({ items, burger }: Props) {
                       <h3 className="font-rawhide text-2xl sm:text-3xl uppercase tracking-wider text-[#F5F5F5] break-words w-full text-center">
                         {burger.name}
                       </h3>
-                      <span className="font-rawhide text-2xl neon-text shrink-0">
+                      <span className="font-rawhide text-2xl neon-text-soft shrink-0">
                         {formatPriceShort(burger.price)}
                       </span>
                     </div>

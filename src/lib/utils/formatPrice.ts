@@ -7,5 +7,5 @@ export function formatPrice(price: number): string {
 }
 
 export function formatPriceShort(price: number): string {
-  return `${price % 1 === 0 ? price : price.toFixed(2)}€`;
+  return `${price % 1 === 0 ? price : price.toFixed(2)} EUR`;
 }
