@@ -18,11 +18,6 @@ export default function HeroSection() {
           sizes="100vw"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-dark/60 via-dark/35 to-dark" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_50%_45%,rgba(217,48,96,0.10),transparent_70%)]" />
-        {/* Floating orbs */}
-        <div className="bg-orb" style={{ width: 300, height: 300, top: "20%", left: "-10%", animationDelay: "0s" }} />
-        <div className="bg-orb" style={{ width: 200, height: 200, top: "50%", right: "-5%", animationDelay: "3s" }} />
-        <div className="bg-orb" style={{ width: 150, height: 150, bottom: "15%", left: "30%", animationDelay: "5s" }} />
       </div>
 
       <div className="absolute top-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-brand-pink to-transparent opacity-70" />
