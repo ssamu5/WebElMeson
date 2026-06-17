@@ -15,7 +15,6 @@ export default function AdminHoyPage() {
     supabase
       .from("menu_items")
       .select("*")
-      .eq("is_available", true)
       .order("sort_order")
       .then(({ data }) => {
         setItems((data as MenuItem[]) ?? []);
@@ -39,7 +38,7 @@ export default function AdminHoyPage() {
     setSaving(null);
   }
 
-  const categories: MenuCategory[] = ["raciones", "smash_10", "smash_13", "postres"];
+  const categories: MenuCategory[] = ["raciones", "smash_10", "smash_13", "postres", "bebidas"];
 
   return (
     <div className="min-h-screen px-4 py-8">
@@ -50,7 +49,7 @@ export default function AdminHoyPage() {
           </Link>
         </div>
         <h1 className="font-display text-2xl uppercase tracking-wider text-[#F5F5F5] mb-1">
-          Productos de Hoy
+          Foodtruck
         </h1>
         <p className="text-muted text-sm mb-6">
           Activa los productos disponibles en la foodtruck hoy. Se muestran en tiempo real en la web.

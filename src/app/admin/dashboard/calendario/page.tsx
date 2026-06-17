@@ -131,7 +131,6 @@ export default function AdminCalendarioPage() {
               <input
                 type="date"
                 value={form.end_date}
-                min={form.start_date}
                 onChange={(e) => setForm((f) => ({ ...f, end_date: e.target.value }))}
                 placeholder={form.start_date}
                 className={IC}
@@ -173,17 +172,19 @@ export default function AdminCalendarioPage() {
           <div className="grid grid-cols-2 gap-3">
             <Field label="Hora inicio (diaria)">
               <input
-                type="time"
+                type="text"
                 value={form.start_time}
                 onChange={(e) => setForm((f) => ({ ...f, start_time: e.target.value }))}
+                placeholder="20:00"
                 className={IC}
               />
             </Field>
             <Field label="Hora fin (diaria)">
               <input
-                type="time"
+                type="text"
                 value={form.end_time}
                 onChange={(e) => setForm((f) => ({ ...f, end_time: e.target.value }))}
+                placeholder="cierre (aprox 23:00)"
                 className={IC}
               />
             </Field>

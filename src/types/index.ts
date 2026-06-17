@@ -1,4 +1,4 @@
-export type MenuCategory = "raciones" | "smash_10" | "smash_13" | "postres";
+export type MenuCategory = "raciones" | "smash_10" | "smash_13" | "postres" | "bebidas";
 
 export interface MenuItem {
   id: string;
@@ -72,4 +72,5 @@ export const CATEGORY_LABELS: Record<MenuCategory, string> = {
   smash_10: "Smash Burgers €10",
   smash_13: "Smash Burgers €13",
   postres: "Postres",
+  bebidas: "Bebidas",
 };

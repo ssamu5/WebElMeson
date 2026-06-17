@@ -7,7 +7,7 @@ import { createClient } from "@/lib/supabase/client";
 import { MenuItem, MenuCategory, CATEGORY_LABELS } from "@/types";
 import { formatPriceShort } from "@/lib/utils/formatPrice";
 
-const CATEGORIES: MenuCategory[] = ["raciones", "smash_10", "smash_13", "postres"];
+const CATEGORIES: MenuCategory[] = ["raciones", "smash_10", "smash_13", "postres", "bebidas"];
 
 type FormState = {
   id: string | null;
@@ -255,7 +255,7 @@ export default function AdminMenuPage() {
           {currentBurgerOfMonth ? (
             <div className="flex items-center gap-3">
               <div className="flex-1">
-                <p className="font-rawhide text-base text-[#f0ece4] uppercase">{currentBurgerOfMonth.name}</p>
+                <p className="font-display text-base text-[#f0ece4] uppercase">{currentBurgerOfMonth.name}</p>
                 <p className="text-muted text-xs">{currentBurgerOfMonth.burger_month_label}</p>
               </div>
               <button
@@ -263,6 +263,22 @@ export default function AdminMenuPage() {
                 className="text-xs text-brand-pink border border-brand-pink/40 px-3 py-1.5 rounded-sm hover:bg-brand-pink/10 transition-colors"
               >
                 Cambiar
+              </button>
+              <button
+                onClick={async () => {
+                  if (!confirm("¿Quitar la Burger del Mes?")) return;
+                  const supabase = createClient();
+                  await supabase
+                    .from("menu_items")
+                    .update({ is_burger_of_month: false, burger_month_label: null })
+                    .eq("is_burger_of_month", true);
+                  setItems((prev) =>
+                    prev.map((i) => ({ ...i, is_burger_of_month: false, burger_month_label: null }))
+                  );
+                }}
+                className="text-xs text-muted border border-dark-border px-3 py-1.5 rounded-sm hover:text-red-400 hover:border-red-400/40 transition-colors"
+              >
+                Quitar
               </button>
             </div>
           ) : (

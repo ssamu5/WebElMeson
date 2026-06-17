@@ -76,13 +76,21 @@ export default function AdminAnunciosPage() {
     };
 
     if (editing) {
-      await supabase
+      const { error } = await supabase
         .from("announcements")
         .update({ ...payload, updated_at: new Date().toISOString() })
         .eq("id", editing);
+      if (error) {
+        setSaving(false);
+        return alert("Error al guardar: " + error.message + "\n\n¿Ejecutaste la migración SQL en Supabase?");
+      }
       setEditing(null);
     } else {
-      await supabase.from("announcements").insert(payload);
+      const { error } = await supabase.from("announcements").insert(payload);
+      if (error) {
+        setSaving(false);
+        return alert("Error al crear: " + error.message + "\n\n¿Ejecutaste la migración SQL en Supabase?");
+      }
     }
 
     setForm(EMPTY_FORM);

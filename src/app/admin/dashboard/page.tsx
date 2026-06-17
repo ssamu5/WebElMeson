@@ -5,7 +5,7 @@ const SECTIONS = [
   {
     href: "/admin/dashboard/hoy",
     icon: "📍",
-    title: "Productos de Hoy",
+    title: "Foodtruck",
     desc: "Activa los productos disponibles hoy en la foodtruck",
     priority: true,
   },

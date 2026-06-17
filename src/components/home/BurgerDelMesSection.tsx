@@ -75,7 +75,7 @@ export default function BurgerDelMesSection({ initial }: Props) {
         )}
 
         <div className="flex items-center justify-center gap-5">
-          <span className="font-rawhide text-4xl neon-text-soft">{formatPriceShort(burger.price)}</span>
+          <span className="font-display text-4xl neon-text-soft">{formatPriceShort(burger.price)}</span>
           <Link href="/carta#burger-mes">
             <Button variant="primary" size="md" className="font-rawhide">Ver en la Carta</Button>
           </Link>
