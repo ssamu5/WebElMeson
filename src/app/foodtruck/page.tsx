@@ -4,7 +4,7 @@ import { createClient } from "@/lib/supabase/server";
 import TodayLocation from "@/components/foodtruck/TodayLocation";
 import FoodtruckCalendar from "@/components/foodtruck/FoodtruckCalendar";
 import TodayBurgersList from "@/components/foodtruck/TodayBurgersList";
-import { FoodtruckLocation, TodaySpecial } from "@/types";
+import { FoodtruckLocation, MenuItem } from "@/types";
 
 export const metadata: Metadata = {
   title: "Foodtruck",
@@ -16,11 +16,30 @@ const WA_URL = "https://wa.me/34690657610?text=Hola%2C%20me%20gustar%C3%ADa%20co
 
 export default async function FoodtruckPage() {
   const supabase = await createClient();
+  const today = new Date().toISOString().split("T")[0];
 
-  const [{ data: locationsData }, { data: todayData }] = await Promise.all([
-    supabase.from("foodtruck_locations").select("*").gte("event_date", new Date().toISOString().split("T")[0]).order("event_date").limit(50),
-    supabase.from("today_special").select("*").order("special_date", { ascending: false }).limit(1).single(),
-  ]);
+  const [{ data: locationsData }, { data: todayLocationData }, { data: todayItemsData }] =
+    await Promise.all([
+      supabase
+        .from("foodtruck_locations")
+        .select("*")
+        .gte("end_date", today)
+        .order("start_date")
+        .limit(50),
+      supabase
+        .from("foodtruck_locations")
+        .select("*")
+        .lte("start_date", today)
+        .gte("end_date", today)
+        .limit(1)
+        .single(),
+      supabase
+        .from("menu_items")
+        .select("*")
+        .eq("is_today_special", true)
+        .eq("is_available", true)
+        .order("sort_order"),
+    ]);
 
   return (
     <div className="min-h-screen">
@@ -60,10 +79,10 @@ export default async function FoodtruckPage() {
         </div>
       </section>
 
-      <TodayLocation initial={todayData as TodaySpecial | null} />
+      <TodayLocation initial={todayLocationData as FoodtruckLocation | null} />
       <div className="border-t border-dark-border/50" />
 
-      {/* Burgers de hoy */}
+      {/* Productos de hoy */}
       <section id="burgers-hoy" className="py-16 px-4 border-b border-dark-border/50">
         <div className="max-w-2xl mx-auto text-center">
           <h2 className="font-playfair text-3xl sm:text-4xl uppercase tracking-wider neon-text mb-2">
@@ -72,7 +91,7 @@ export default async function FoodtruckPage() {
           <p className="text-muted text-sm mb-8 max-w-md mx-auto">
             Esto es lo que tenemos hoy en la foodtruck.
           </p>
-          <TodayBurgersList initial={todayData as TodaySpecial | null} />
+          <TodayBurgersList initial={(todayItemsData as MenuItem[]) ?? []} />
         </div>
       </section>
 

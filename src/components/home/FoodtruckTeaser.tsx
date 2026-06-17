@@ -1,30 +1,10 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { createClient } from "@/lib/supabase/client";
-import { TodaySpecial } from "@/types";
 import Button from "@/components/ui/Button";
 
-interface Props {
-  initial: TodaySpecial | null;
-}
-
-export default function FoodtruckTeaser({ initial }: Props) {
-  const [today, setToday] = useState<TodaySpecial | null>(initial);
-
-  useEffect(() => {
-    const supabase = createClient();
-    const channel = supabase
-      .channel("today_special_teaser")
-      .on("postgres_changes", { event: "*", schema: "public", table: "today_special" }, (payload) => {
-        setToday(payload.new as TodaySpecial);
-      })
-      .subscribe();
-    return () => { supabase.removeChannel(channel); };
-  }, []);
-
+export default function FoodtruckTeaser() {
   return (
     <section className="relative py-0 overflow-hidden min-h-[60vh] flex items-center">
       {/* Background image */}
@@ -49,24 +29,9 @@ export default function FoodtruckTeaser({ initial }: Props) {
             Nuestra<br />
             <span className="neon-text">Foodtruck</span>
           </h2>
-
-          {/* Today's location */}
-          {today?.special_message ? (
-            <div className="mb-6 glass-card rounded-lg p-4 border-l-2 border-brand-pink">
-              <p className="text-xs font-display uppercase tracking-widest text-brand-pink mb-1">Hoy estamos en</p>
-              <p className="text-[#F5F5F5] font-medium">{today.special_message}</p>
-              {today.featured_burgers && today.featured_burgers.length > 0 && (
-                <p className="text-muted text-xs mt-1">
-                  Hoy: {today.featured_burgers.join(" · ")}
-                </p>
-              )}
-            </div>
-          ) : (
-            <p className="text-muted text-sm mb-6 italic">
-              Consulta el calendario para ver nuestras próximas paradas.
-            </p>
-          )}
-
+          <p className="text-muted text-sm mb-6 italic">
+            Consulta el calendario para ver nuestras próximas paradas.
+          </p>
           <Link href="/foodtruck">
             <Button variant="neon" size="lg" className="font-rawhide">
               Ver Calendario y Ubicación

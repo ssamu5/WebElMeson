@@ -6,6 +6,7 @@ import Footer from "./Footer";
 import HoursBanner from "./HoursBanner";
 import BurgerRain from "@/components/effects/BurgerRain";
 import ScrollRevealInit from "@/components/effects/ScrollRevealInit";
+import AnnouncementPopup from "@/components/AnnouncementPopup";
 
 export default function PublicLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
@@ -30,6 +31,7 @@ export default function PublicLayout({ children }: { children: React.ReactNode }
         <span className="font-rawhide">948 840 354</span>
       </a>
       <ScrollRevealInit />
+      <AnnouncementPopup />
     </>
   );
 }

@@ -2,26 +2,36 @@
 
 import { useEffect, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
-import { TodaySpecial } from "@/types";
-import { formatDateEs, todayString } from "@/lib/utils/formatDate";
+import { FoodtruckLocation } from "@/types";
+import { todayString } from "@/lib/utils/formatDate";
 
 interface Props {
-  initial: TodaySpecial | null;
+  initial: FoodtruckLocation | null;
 }
 
 export default function TodayLocation({ initial }: Props) {
-  const [today, setToday] = useState<TodaySpecial | null>(initial);
-  const todayStr = todayString();
-  const isToday = today?.special_date === todayStr;
+  const [loc, setLoc] = useState<FoodtruckLocation | null>(initial);
 
   useEffect(() => {
     const supabase = createClient();
+    const today = todayString();
+
+    async function fetchToday() {
+      const { data } = await supabase
+        .from("foodtruck_locations")
+        .select("*")
+        .lte("start_date", today)
+        .gte("end_date", today)
+        .limit(1)
+        .single();
+      setLoc(data as FoodtruckLocation | null);
+    }
+
     const channel = supabase
-      .channel("today_special_ft")
-      .on("postgres_changes", { event: "*", schema: "public", table: "today_special" }, (payload) => {
-        setToday(payload.new as TodaySpecial);
-      })
+      .channel("today_location_ft")
+      .on("postgres_changes", { event: "*", schema: "public", table: "foodtruck_locations" }, fetchToday)
       .subscribe();
+
     return () => { supabase.removeChannel(channel); };
   }, []);
 
@@ -30,42 +40,40 @@ export default function TodayLocation({ initial }: Props) {
       <div className="max-w-4xl mx-auto">
         {/* Section label */}
         <div className="flex items-center gap-3 mb-6">
-          <div className={`w-3 h-3 rounded-full ${isToday ? "bg-green-400 animate-pulse shadow-[0_0_8px_#4ade80]" : "bg-muted"}`} />
+          <div className={`w-3 h-3 rounded-full ${loc ? "bg-green-400 animate-pulse shadow-[0_0_8px_#4ade80]" : "bg-muted"}`} />
           <span className="font-playfair text-xs uppercase tracking-[0.3em] text-[#F5F5F5]">
-            {isToday ? "Abiertos Ahora · Hoy Estamos En" : "Dónde Estamos Hoy"}
+            {loc ? "Abiertos Ahora · Hoy Estamos En" : "Dónde Estamos Hoy"}
           </span>
         </div>
 
-        {today && today.special_message ? (
+        {loc ? (
           <div className="glass-card rounded-xl p-6 md:p-8 border border-brand-pink/20 hover:border-brand-pink/40 transition-all duration-300">
             <p className="font-display text-3xl sm:text-4xl uppercase tracking-wider text-[#F5F5F5] mb-2">
-              {today.special_message}
+              {loc.event_name}
             </p>
 
-            {today.special_date && (
-              <p className="text-muted text-sm font-display uppercase tracking-wider mb-6">
-                {formatDateEs(today.special_date)}
-              </p>
+            <p className="text-brand-pink text-sm font-rawhide uppercase tracking-wider mb-4">
+              {loc.start_time?.slice(0, 5)} – {loc.end_time?.slice(0, 5)}
+            </p>
+
+            {loc.address && (
+              <p className="text-muted text-sm mb-4">{loc.address}</p>
             )}
 
-            {today.featured_burgers && today.featured_burgers.length > 0 && (
-              <div className="mb-6">
-                <p className="text-xs font-display uppercase tracking-widest text-brand-pink mb-2">Hoy en la carta</p>
-                <div className="flex flex-wrap gap-2">
-                  {today.featured_burgers.map((b) => (
-                    <span
-                      key={b}
-                      className="font-display text-sm uppercase tracking-wider text-[#F5F5F5] bg-dark border border-brand-pink/30 px-3 py-1 rounded-sm"
-                    >
-                      {b}
-                    </span>
-                  ))}
-                </div>
-              </div>
+            {loc.special_note && (
+              <p className="text-brand-amber text-sm italic mb-4">{loc.special_note}</p>
             )}
 
-            {today.extra_note && (
-              <p className="text-brand-amber text-sm italic">{today.extra_note}</p>
+            {loc.maps_url && (
+              <a
+                href={loc.maps_url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-xs font-rawhide uppercase tracking-wider text-brand-pink border border-brand-pink/40 px-4 py-2 hover:bg-brand-pink hover:text-white transition-all duration-200 rounded-sm"
+              >
+                <MapIcon />
+                Ver en Google Maps
+              </a>
             )}
           </div>
         ) : (
@@ -78,5 +86,14 @@ export default function TodayLocation({ initial }: Props) {
         )}
       </div>
     </section>
+  );
+}
+
+function MapIcon() {
+  return (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
+      <circle cx="12" cy="10" r="3" />
+    </svg>
   );
 }

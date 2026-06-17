@@ -13,16 +13,11 @@ export default function MenuItemCard({ item, variant = "default", highlighted = 
   return (
     <div
       className={cn(
-        "relative flex items-start gap-3 rounded-xl border transition-all duration-200 overflow-hidden p-4",
-        item.is_available
-          ? cn(
-              "cursor-pointer transition-all duration-150",
-              highlighted
-                ? "bg-dark-secondary border-brand-pink shadow-[0_0_18px_rgba(217,48,96,0.4)]"
-                : "bg-dark-elevated border-dark-border hover:border-brand-pink/50"
-            )
-          : "bg-dark-secondary border-dark-border opacity-50",
-        variant === "featured" && item.is_available && "border-brand-pink/25"
+        "relative flex items-start gap-3 rounded-xl border transition-all duration-200 overflow-hidden p-4 cursor-pointer",
+        highlighted
+          ? "bg-dark-secondary border-brand-pink shadow-[0_0_18px_rgba(217,48,96,0.4)]"
+          : "bg-dark-elevated border-dark-border hover:border-brand-pink/50",
+        variant === "featured" && "border-brand-pink/25"
       )}
     >
       {variant === "featured" && (
@@ -39,12 +34,6 @@ export default function MenuItemCard({ item, variant = "default", highlighted = 
             {formatPriceShort(item.price)}
           </span>
         </div>
-
-        {!item.is_available && (
-          <span className="inline-block text-[10px] font-display uppercase tracking-wider text-red-400 border border-red-400/30 px-1.5 py-0.5 rounded-sm mb-1">
-            Agotado
-          </span>
-        )}
 
         {item.description && (
           <p className="text-muted text-sm leading-relaxed">

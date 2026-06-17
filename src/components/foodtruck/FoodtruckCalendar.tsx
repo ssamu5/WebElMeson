@@ -10,6 +10,21 @@ interface Props {
   initial: FoodtruckLocation[];
 }
 
+function buildEventsByDate(locations: FoodtruckLocation[]): Record<string, FoodtruckLocation> {
+  const map: Record<string, FoodtruckLocation> = {};
+  for (const loc of locations) {
+    const start = new Date(loc.start_date);
+    const end = new Date(loc.end_date);
+    const cur = new Date(start);
+    while (cur <= end) {
+      const key = cur.toISOString().split("T")[0];
+      map[key] = loc;
+      cur.setDate(cur.getDate() + 1);
+    }
+  }
+  return map;
+}
+
 export default function FoodtruckCalendar({ initial }: Props) {
   const [locations, setLocations] = useState<FoodtruckLocation[]>(initial);
   const [selectedDate, setSelectedDate] = useState<string | null>(null);
@@ -21,11 +36,15 @@ export default function FoodtruckCalendar({ initial }: Props) {
   useEffect(() => {
     const supabase = createClient();
     const channel = supabase
-      .channel("foodtruck_locations")
+      .channel("foodtruck_locations_cal")
       .on("postgres_changes", { event: "*", schema: "public", table: "foodtruck_locations" }, () => {
-        supabase.from("foodtruck_locations").select("*").order("event_date").then(({ data }) => {
-          if (data) setLocations(data as FoodtruckLocation[]);
-        });
+        supabase
+          .from("foodtruck_locations")
+          .select("*")
+          .order("start_date")
+          .then(({ data }) => {
+            if (data) setLocations(data as FoodtruckLocation[]);
+          });
       })
       .subscribe();
     return () => { supabase.removeChannel(channel); };
@@ -36,11 +55,7 @@ export default function FoodtruckCalendar({ initial }: Props) {
   const daysInMonth = new Date(year, month + 1, 0).getDate();
   const startPad = firstDay === 0 ? 6 : firstDay - 1; // Monday start
 
-  const eventsByDate = locations.reduce((acc, loc) => {
-    acc[loc.event_date] = loc;
-    return acc;
-  }, {} as Record<string, FoodtruckLocation>);
-
+  const eventsByDate = buildEventsByDate(locations);
   const selectedEvent = selectedDate ? eventsByDate[selectedDate] : null;
 
   function prevMonth() {
@@ -74,21 +89,13 @@ export default function FoodtruckCalendar({ initial }: Props) {
         <div className="glass-card rounded-xl overflow-hidden">
           {/* Month navigation */}
           <div className="flex items-center justify-between px-4 sm:px-6 py-4 border-b border-dark-border">
-            <button
-              onClick={prevMonth}
-              className="p-2 text-muted hover:text-brand-pink transition-colors"
-              aria-label="Mes anterior"
-            >
+            <button onClick={prevMonth} className="p-2 text-muted hover:text-brand-pink transition-colors" aria-label="Mes anterior">
               <ChevronLeft />
             </button>
             <h3 className="font-rawhide text-xl uppercase tracking-wider text-[#F5F5F5]">
               {formatMonthYear(`${year}-${String(month + 1).padStart(2, "0")}-01`)}
             </h3>
-            <button
-              onClick={nextMonth}
-              className="p-2 text-muted hover:text-brand-pink transition-colors"
-              aria-label="Mes siguiente"
-            >
+            <button onClick={nextMonth} className="p-2 text-muted hover:text-brand-pink transition-colors" aria-label="Mes siguiente">
               <ChevronRight />
             </button>
           </div>
@@ -120,9 +127,7 @@ export default function FoodtruckCalendar({ initial }: Props) {
                   onClick={() => hasEvent ? setSelectedDate(isSelected ? null : ds) : undefined}
                   className={cn(
                     "aspect-square flex flex-col items-center justify-center text-sm transition-all duration-200 border-b border-r border-dark-border/30",
-                    hasEvent
-                      ? "cursor-pointer hover:bg-brand-pink/10"
-                      : "cursor-default",
+                    hasEvent ? "cursor-pointer hover:bg-brand-pink/10" : "cursor-default",
                     isSelected && "bg-brand-pink/20",
                     isToday && "font-bold"
                   )}
@@ -146,15 +151,21 @@ export default function FoodtruckCalendar({ initial }: Props) {
             })}
           </div>
 
-          {/* Selected event popup */}
+          {/* Selected event detail */}
           {selectedEvent && (
             <div className="border-t border-brand-pink/30 bg-dark-elevated px-4 sm:px-6 py-4 animate-slide-up">
               <div className="flex items-start justify-between gap-4">
                 <div>
                   <p className="font-rawhide text-xl uppercase tracking-wider text-[#F5F5F5]">
-                    {selectedEvent.location_name}
+                    {selectedEvent.event_name}
                   </p>
-                  <p className="text-muted text-sm mt-1">{formatDateEs(selectedEvent.event_date)}</p>
+                  {selectedEvent.start_date === selectedEvent.end_date ? (
+                    <p className="text-muted text-sm mt-1">{formatDateEs(selectedEvent.start_date)}</p>
+                  ) : (
+                    <p className="text-muted text-sm mt-1">
+                      {formatDateEs(selectedEvent.start_date)} → {formatDateEs(selectedEvent.end_date)}
+                    </p>
+                  )}
                   {selectedEvent.address && (
                     <p className="text-muted text-xs mt-1">{selectedEvent.address}</p>
                   )}

@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import { createClient } from "@/lib/supabase/server";
 import MenuCategoryTabs from "@/components/menu/MenuCategoryTabs";
 import CartaInteractive from "@/components/menu/CartaInteractive";
-import { MenuItem, BurgerDelMes } from "@/types";
+import { MenuItem } from "@/types";
 
 export const metadata: Metadata = { title: "Carta" };
 export const revalidate = 60;
@@ -11,8 +11,16 @@ export default async function CartaPage() {
   const supabase = await createClient();
 
   const [{ data: allItems }, { data: burgerMes }] = await Promise.all([
-    supabase.from("menu_items").select("*").order("sort_order"),
-    supabase.from("burger_del_mes").select("*").eq("is_active", true).single(),
+    supabase
+      .from("menu_items")
+      .select("*")
+      .eq("is_available", true)
+      .order("sort_order"),
+    supabase
+      .from("menu_items")
+      .select("*")
+      .eq("is_burger_of_month", true)
+      .single(),
   ]);
 
   return (
@@ -32,7 +40,7 @@ export default async function CartaPage() {
 
       <CartaInteractive
         items={(allItems as MenuItem[]) ?? []}
-        burger={(burgerMes as BurgerDelMes) ?? null}
+        burger={(burgerMes as MenuItem) ?? null}
       />
     </div>
   );

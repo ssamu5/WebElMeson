@@ -1,17 +1,15 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { MenuItem, BurgerDelMes, MenuCategory, CATEGORY_LABELS } from "@/types";
+import { MenuItem, MenuCategory, CATEGORY_LABELS } from "@/types";
 import { formatPriceShort } from "@/lib/utils/formatPrice";
 import MenuItemCard from "./MenuItemCard";
 import MenuModal from "./MenuModal";
 import SectionTitle from "@/components/ui/SectionTitle";
 
-type AnyItem = MenuItem | BurgerDelMes;
-
 interface Props {
   items: MenuItem[];
-  burger: BurgerDelMes | null;
+  burger: MenuItem | null;
 }
 
 const CATS_BEFORE: MenuCategory[] = ["raciones", "smash_10", "smash_13"];
@@ -71,12 +69,17 @@ function CategorySection({
 }
 
 export default function CartaInteractive({ items, burger }: Props) {
-  const [selected, setSelected] = useState<AnyItem | null>(null);
+  const [selected, setSelected] = useState<MenuItem | null>(null);
   const [hoveredId, setHoveredId] = useState<string | null>(null);
   const [pressedId, setPressedId] = useState<string | null>(null);
 
+  // Filter burger out of its category to avoid duplicate display
+  const burgerId = burger?.id;
   const byCategory = (["raciones", "smash_10", "smash_13", "postres"] as MenuCategory[]).reduce(
-    (acc, cat) => ({ ...acc, [cat]: items.filter((i) => i.category === cat) }),
+    (acc, cat) => ({
+      ...acc,
+      [cat]: items.filter((i) => i.category === cat && i.id !== burgerId),
+    }),
     {} as Record<MenuCategory, MenuItem[]>
   );
 
@@ -118,9 +121,9 @@ export default function CartaInteractive({ items, burger }: Props) {
                   Burger del Mes
                 </h2>
                 <div className="mt-2 h-[2px] w-16 bg-brand-pink shadow-[0_0_8px_#D93060,0_0_16px_rgba(217,48,96,0.4)] mx-auto" />
-                {burger.month_year && (
+                {burger.burger_month_label && (
                   <span className="absolute top-0 right-0 font-rawhide text-xs uppercase tracking-widest text-brand-pink border border-brand-pink/30 px-2 py-1 rounded-sm">
-                    {burger.month_year}
+                    {burger.burger_month_label}
                   </span>
                 )}
               </div>

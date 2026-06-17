@@ -8,6 +8,9 @@ export interface MenuItem {
   category: MenuCategory;
   is_available: boolean;
   is_featured: boolean;
+  is_today_special: boolean;
+  is_burger_of_month: boolean;
+  burger_month_label: string | null;
   sort_order: number;
   image_url: string | null;
   allergens: string[] | null;
@@ -15,24 +18,11 @@ export interface MenuItem {
   updated_at: string;
 }
 
-export interface BurgerDelMes {
-  id: string;
-  name: string;
-  description: string | null;
-  price: number;
-  image_url: string | null;
-  story: string | null;
-  is_active: boolean;
-  month_year: string | null;
-  created_at: string;
-  updated_at: string;
-}
-
 export interface FoodtruckLocation {
   id: string;
-  event_date: string;
-  location_name: string;
-  town: string;
+  start_date: string;
+  end_date: string;
+  event_name: string;
   address: string | null;
   maps_url: string | null;
   start_time: string;
@@ -40,15 +30,6 @@ export interface FoodtruckLocation {
   special_note: string | null;
   is_confirmed: boolean;
   created_at: string;
-  updated_at: string;
-}
-
-export interface TodaySpecial {
-  id: string;
-  special_date: string;
-  featured_burgers: string[] | null;
-  special_message: string | null;
-  extra_note: string | null;
   updated_at: string;
 }
 
@@ -71,6 +52,17 @@ export interface GalleryImage {
   sort_order: number;
   is_visible: boolean;
   created_at: string;
+}
+
+export interface Announcement {
+  id: string;
+  title: string;
+  message: string;
+  start_at: string;
+  end_at: string;
+  is_active: boolean;
+  created_at: string;
+  updated_at: string;
 }
 
 export type GalleryCategory = "todo" | "foodtruck" | "burgers" | "eventos";

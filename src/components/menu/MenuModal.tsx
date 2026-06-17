@@ -2,15 +2,10 @@
 
 import { useEffect } from "react";
 import Image from "next/image";
-import { MenuItem, BurgerDelMes } from "@/types";
+import { MenuItem } from "@/types";
 import { formatPriceShort } from "@/lib/utils/formatPrice";
 
-type Item = MenuItem | BurgerDelMes;
-interface Props { item: Item; onClose: () => void; }
-
-function isMenuItem(item: Item): item is MenuItem {
-  return "category" in item;
-}
+interface Props { item: MenuItem; onClose: () => void; }
 
 export default function MenuModal({ item, onClose }: Props) {
   useEffect(() => {
@@ -39,10 +34,8 @@ export default function MenuModal({ item, onClose }: Props) {
         <div className="relative flex-shrink-0 bg-dark" style={{ height: "58%" }}>
           {item.image_url ? (
             <>
-              {/* Blurred bg fill */}
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src={item.image_url} alt="" aria-hidden className="absolute inset-0 w-full h-full object-cover blur-2xl scale-110 opacity-50" />
-              {/* Sharp image */}
               <Image
                 src={item.image_url}
                 alt={item.name}
@@ -83,19 +76,13 @@ export default function MenuModal({ item, onClose }: Props) {
               </span>
             </div>
 
-            {"month_year" in item && item.month_year && (
+            {item.is_burger_of_month && item.burger_month_label && (
               <span className="inline-block font-rawhide text-xs uppercase tracking-widest text-brand-pink border border-brand-pink/40 px-3 py-1 rounded-sm">
-                {item.month_year}
+                {item.burger_month_label}
               </span>
             )}
 
             <div className="h-[1px] bg-gradient-to-r from-brand-pink/60 via-brand-pink/20 to-transparent" />
-
-            {"story" in item && item.story && (
-              <p className="text-[#F5F5F5]/55 text-sm italic leading-relaxed border-l-2 border-brand-pink/40 pl-3">
-                &ldquo;{item.story}&rdquo;
-              </p>
-            )}
 
             {item.description && (
               <div>
@@ -104,14 +91,10 @@ export default function MenuModal({ item, onClose }: Props) {
               </div>
             )}
 
-            {isMenuItem(item) && item.allergens && item.allergens.length > 0 && (
+            {item.allergens && item.allergens.length > 0 && (
               <p className="text-muted text-xs uppercase tracking-wider">
                 Alérgenos: {item.allergens.join(", ")}
               </p>
-            )}
-
-            {isMenuItem(item) && !item.is_available && (
-              <p className="text-red-400 text-xs font-display uppercase tracking-wider">No disponible hoy</p>
             )}
           </div>
         </div>
