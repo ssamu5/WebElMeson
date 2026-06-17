@@ -73,7 +73,7 @@ export default function AdminHoyPage() {
                         key={item.id}
                         className="flex items-center justify-between bg-dark-elevated border border-dark-border rounded-xl px-4 py-3"
                       >
-                        <span className="font-rawhide text-base text-[#f0ece4] uppercase tracking-wide">
+                        <span className="font-display text-base text-[#f0ece4] uppercase tracking-wide">
                           {item.name}
                         </span>
                         <button

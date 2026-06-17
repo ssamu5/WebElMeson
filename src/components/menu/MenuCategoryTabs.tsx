@@ -54,7 +54,7 @@ export default function MenuCategoryTabs() {
               key={tab.id}
               onClick={() => scrollToSection(tab.id)}
               className={cn(
-                "px-3 py-1.5 font-rawhide text-xs sm:text-sm uppercase tracking-wider rounded-sm transition-all duration-200 whitespace-nowrap flex-shrink-0 snap-start",
+                "px-3 py-1.5 font-display text-xs sm:text-sm uppercase tracking-wider rounded-sm transition-all duration-200 whitespace-nowrap flex-shrink-0 snap-start",
                 active === tab.id
                   ? "bg-brand-pink text-white"
                   : "text-muted hover:text-[#f0ece4] hover:bg-dark-elevated"

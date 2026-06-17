@@ -55,13 +55,13 @@ export default function TodayBurgersList({ initial }: Props) {
             </div>
           )}
           <div className="flex-1 min-w-0">
-            <p className="font-rawhide text-lg uppercase tracking-wider text-brand-pink leading-tight">
+            <p className="font-display text-lg uppercase tracking-wider text-brand-pink leading-tight">
               {item.name}
             </p>
             {item.description && (
               <p className="text-muted text-xs mt-0.5 line-clamp-2">{item.description}</p>
             )}
-            <p className="font-rawhide text-base price-shimmer mt-1">{formatPriceShort(item.price)}</p>
+            <p className="font-display text-base price-shimmer mt-1">{formatPriceShort(item.price)}</p>
           </div>
         </div>
       ))}

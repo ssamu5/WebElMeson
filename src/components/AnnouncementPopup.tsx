@@ -54,7 +54,7 @@ export default function AnnouncementPopup() {
         {/* Neon accent */}
         <div className="w-8 h-[2px] bg-brand-pink shadow-[0_0_8px_#E8189A] mb-4" />
 
-        <h2 className="font-rawhide text-2xl uppercase tracking-wider text-[#F5F5F5] mb-3 pr-8">
+        <h2 className="font-display text-2xl uppercase tracking-wider text-[#F5F5F5] mb-3 pr-8">
           {announcement.title}
         </h2>
         <p className="text-[#f0ece4]/80 text-sm leading-relaxed">

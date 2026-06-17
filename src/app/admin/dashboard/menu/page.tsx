@@ -311,7 +311,7 @@ export default function AdminMenuPage() {
                       </div>
                     )}
                     <div className="flex-1 min-w-0">
-                      <p className="font-rawhide text-sm uppercase tracking-wide text-[#F5F5F5] leading-tight truncate">
+                      <p className="font-display text-sm uppercase tracking-wide text-[#F5F5F5] leading-tight truncate">
                         {item.name}
                         {item.is_burger_of_month && (
                           <span className="ml-2 text-[10px] text-brand-pink font-display normal-case tracking-normal border border-brand-pink/40 px-1 py-0.5 rounded-sm">
@@ -513,7 +513,7 @@ export default function AdminMenuPage() {
                     </div>
                   )}
                   <div className="flex-1">
-                    <p className="font-rawhide text-sm uppercase tracking-wide text-[#F5F5F5]">{item.name}</p>
+                    <p className="font-display text-sm uppercase tracking-wide text-[#F5F5F5]">{item.name}</p>
                     <p className="text-muted text-xs">{CATEGORY_LABELS[item.category]} — {formatPriceShort(item.price)}</p>
                   </div>
                   {item.is_burger_of_month && (
