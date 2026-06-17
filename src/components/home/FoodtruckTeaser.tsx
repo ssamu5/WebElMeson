@@ -33,7 +33,7 @@ export default function FoodtruckTeaser() {
             Consulta el calendario para ver nuestras próximas paradas.
           </p>
           <Link href="/foodtruck">
-            <Button variant="neon" size="lg" className="font-rawhide">
+            <Button variant="neon" size="lg" className="font-display">
               Ver Calendario y Ubicación
             </Button>
           </Link>
