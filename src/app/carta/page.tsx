@@ -15,7 +15,6 @@ export default async function CartaPage() {
       .from("menu_items")
       .select("*")
       .eq("is_available", true)
-      .neq("category", "bebidas")
       .order("sort_order"),
     supabase
       .from("menu_items")

@@ -7,7 +7,7 @@ import { createClient } from "@/lib/supabase/client";
 import { MenuItem, MenuCategory, CATEGORY_LABELS } from "@/types";
 import { formatPriceShort } from "@/lib/utils/formatPrice";
 
-const CATEGORIES: MenuCategory[] = ["raciones", "smash_10", "smash_13", "postres", "bebidas"];
+const CATEGORIES: MenuCategory[] = ["raciones", "smash_10", "smash_13", "postres"];
 
 type FormState = {
   id: string | null;

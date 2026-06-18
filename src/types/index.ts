@@ -1,4 +1,4 @@
-export type MenuCategory = "raciones" | "smash_10" | "smash_13" | "postres" | "bebidas";
+export type MenuCategory = "raciones" | "smash_10" | "smash_13" | "postres";
 
 export interface MenuItem {
   id: string;
@@ -8,7 +8,6 @@ export interface MenuItem {
   category: MenuCategory;
   is_available: boolean;
   is_featured: boolean;
-  is_today_special: boolean;
   is_burger_of_month: boolean;
   burger_month_label: string | null;
   sort_order: number;
@@ -17,6 +16,28 @@ export interface MenuItem {
   created_at: string;
   updated_at: string;
 }
+
+export type FoodtruckCategory = "entrantes" | "burgers" | "postres" | "bebidas";
+
+export interface FoodtruckItem {
+  id: string;
+  name: string;
+  description: string | null;
+  price: number;
+  category: FoodtruckCategory;
+  image_url: string | null;
+  is_today_special: boolean;
+  sort_order: number;
+  created_at: string;
+  updated_at: string;
+}
+
+export const FOODTRUCK_CATEGORY_LABELS: Record<FoodtruckCategory, string> = {
+  entrantes: "Entrantes",
+  burgers: "Burgers",
+  postres: "Postres",
+  bebidas: "Bebidas",
+};
 
 export interface FoodtruckLocation {
   id: string;
@@ -72,5 +93,4 @@ export const CATEGORY_LABELS: Record<MenuCategory, string> = {
   smash_10: "Smash Burgers €10",
   smash_13: "Smash Burgers €13",
   postres: "Postres",
-  bebidas: "Bebidas",
 };

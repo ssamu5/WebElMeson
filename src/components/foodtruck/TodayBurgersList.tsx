@@ -3,32 +3,31 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { createClient } from "@/lib/supabase/client";
-import { MenuItem } from "@/types";
+import { FoodtruckItem } from "@/types";
 import { formatPriceShort } from "@/lib/utils/formatPrice";
 
 interface Props {
-  initial: MenuItem[];
+  initial: FoodtruckItem[];
 }
 
 export default function TodayBurgersList({ initial }: Props) {
-  const [items, setItems] = useState<MenuItem[]>(initial);
+  const [items, setItems] = useState<FoodtruckItem[]>(initial);
 
   useEffect(() => {
     const supabase = createClient();
 
     async function fetchItems() {
       const { data } = await supabase
-        .from("menu_items")
+        .from("foodtruck_items")
         .select("*")
         .eq("is_today_special", true)
-        .eq("is_available", true)
         .order("sort_order");
-      if (data) setItems(data as MenuItem[]);
+      if (data) setItems(data as FoodtruckItem[]);
     }
 
     const channel = supabase
       .channel("today_specials_list")
-      .on("postgres_changes", { event: "*", schema: "public", table: "menu_items" }, fetchItems)
+      .on("postgres_changes", { event: "*", schema: "public", table: "foodtruck_items" }, fetchItems)
       .subscribe();
 
     return () => { supabase.removeChannel(channel); };

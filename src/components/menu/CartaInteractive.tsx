@@ -20,7 +20,6 @@ const CATEGORY_RUNES: Record<MenuCategory, string> = {
   smash_10: "ᚦ",
   smash_13: "ᛏ",
   postres: "ᚾ",
-  bebidas: "ᛒ",
 };
 
 function CategorySection({

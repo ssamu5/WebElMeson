@@ -4,7 +4,7 @@ import { createClient } from "@/lib/supabase/server";
 import TodayLocation from "@/components/foodtruck/TodayLocation";
 import FoodtruckCalendar from "@/components/foodtruck/FoodtruckCalendar";
 import TodayBurgersList from "@/components/foodtruck/TodayBurgersList";
-import { FoodtruckLocation, MenuItem } from "@/types";
+import { FoodtruckLocation, FoodtruckItem } from "@/types";
 
 export const metadata: Metadata = {
   title: "Foodtruck",
@@ -34,10 +34,9 @@ export default async function FoodtruckPage() {
         .limit(1)
         .single(),
       supabase
-        .from("menu_items")
+        .from("foodtruck_items")
         .select("*")
         .eq("is_today_special", true)
-        .eq("is_available", true)
         .order("sort_order"),
     ]);
 
@@ -91,7 +90,7 @@ export default async function FoodtruckPage() {
           <p className="text-muted text-sm mb-8 max-w-md mx-auto">
             Esto es lo que tenemos hoy en la foodtruck.
           </p>
-          <TodayBurgersList initial={(todayItemsData as MenuItem[]) ?? []} />
+          <TodayBurgersList initial={(todayItemsData as FoodtruckItem[]) ?? []} />
         </div>
       </section>
 
