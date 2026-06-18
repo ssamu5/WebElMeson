@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { createClient } from "@/lib/supabase/client";
-import { FoodtruckItem, FoodtruckCategory, FOODTRUCK_CATEGORY_LABELS } from "@/types";
+import { FoodtruckItem, FoodtruckCategory, FOODTRUCK_CATEGORY_LABELS, MenuItem } from "@/types";
 import { formatPriceShort } from "@/lib/utils/formatPrice";
 
 const CATEGORIES: FoodtruckCategory[] = ["entrantes", "burgers", "postres", "bebidas"];
@@ -38,6 +38,8 @@ export default function AdminHoyPage() {
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [imagePreview, setImagePreview] = useState<string>("");
   const [uploading, setUploading] = useState(false);
+  const [cartaPicker, setCartaPicker] = useState(false);
+  const [cartaBurgers, setCartaBurgers] = useState<MenuItem[]>([]);
   const fileRef = useRef<HTMLInputElement>(null);
 
   const supabase = createClient();
@@ -52,7 +54,28 @@ export default function AdminHoyPage() {
         setItems((data as FoodtruckItem[]) ?? []);
         setLoading(false);
       });
+    client
+      .from("menu_items")
+      .select("*")
+      .in("category", ["smash_10", "smash_13"])
+      .order("sort_order")
+      .then(({ data }) => setCartaBurgers((data as MenuItem[]) ?? []));
   }, []);
+
+  function pickFromCarta(item: MenuItem) {
+    setPanel({
+      id: null,
+      name: item.name,
+      description: item.description ?? "",
+      category: "burgers",
+      price: String(item.price),
+      image_url: item.image_url ?? "",
+      is_today_special: true,
+    });
+    setImageFile(null);
+    setImagePreview("");
+    setCartaPicker(false);
+  }
 
   function openEdit(item: FoodtruckItem) {
     setPanel({
@@ -204,6 +227,13 @@ export default function AdminHoyPage() {
         <p className="text-muted text-xs mb-6">
           Productos exclusivos de la foodtruck (independientes de la carta del restaurante). Toca uno para editarlo. El switch lo activa para hoy.
         </p>
+
+        <button
+          onClick={() => setCartaPicker(true)}
+          className="w-full mb-8 text-sm text-muted border border-dashed border-dark-border rounded-lg py-3 hover:border-brand-pink/50 hover:text-brand-pink transition-colors"
+        >
+          + Coger una burger de la carta
+        </button>
 
         {loading && <p className="text-muted text-sm">Cargando...</p>}
 
@@ -390,6 +420,44 @@ export default function AdminHoyPage() {
                 >
                   Eliminar producto
                 </button>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Carta burger picker */}
+      {cartaPicker && (
+        <div className="fixed inset-0 z-50 flex flex-col justify-end">
+          <div className="absolute inset-0 bg-black/60" onClick={() => setCartaPicker(false)} />
+          <div className="relative bg-[#111] rounded-t-2xl p-5 pb-10 max-h-[80vh] overflow-y-auto">
+            <div className="flex items-center justify-between mb-4">
+              <h2 className="font-display text-lg uppercase tracking-wider text-[#F5F5F5]">Elegir burger de la carta</h2>
+              <button onClick={() => setCartaPicker(false)} className="text-muted hover:text-white text-2xl leading-none">×</button>
+            </div>
+            <p className="text-muted text-xs mb-4">
+              Se copiará a la foodtruck para que puedas editarla (ingredientes, precio...) sin tocar la carta.
+            </p>
+            <div className="space-y-2">
+              {cartaBurgers.map((item) => (
+                <button
+                  key={item.id}
+                  onClick={() => pickFromCarta(item)}
+                  className="w-full flex items-center gap-3 glass-card rounded-lg px-4 py-3 text-left hover:border-brand-pink/50 transition-colors active:opacity-70"
+                >
+                  {item.image_url && (
+                    <div className="relative w-10 h-10 rounded-md overflow-hidden shrink-0">
+                      <Image src={item.image_url} alt={item.name} fill className="object-cover" sizes="40px" />
+                    </div>
+                  )}
+                  <div className="flex-1">
+                    <p className="font-display text-sm uppercase tracking-wide text-[#F5F5F5]">{item.name}</p>
+                    <p className="text-muted text-xs">{formatPriceShort(item.price)}</p>
+                  </div>
+                </button>
+              ))}
+              {cartaBurgers.length === 0 && (
+                <p className="text-muted text-sm italic">No hay burgers en la carta.</p>
               )}
             </div>
           </div>

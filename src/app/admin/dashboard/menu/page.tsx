@@ -242,7 +242,7 @@ export default function AdminMenuPage() {
             ← Volver
           </Link>
         </div>
-        <h1 className="font-display text-2xl uppercase tracking-wider text-[#F5F5F5] mb-1">Menú</h1>
+        <h1 className="font-display text-2xl uppercase tracking-wider text-[#F5F5F5] mb-1">Carta</h1>
         <p className="text-muted text-xs mb-6">Toca un producto para editarlo. El switch activa/desactiva en la carta.</p>
 
         {loading && <p className="text-muted text-sm">Cargando...</p>}

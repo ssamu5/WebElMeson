@@ -12,7 +12,7 @@ const SECTIONS = [
   {
     href: "/admin/dashboard/menu",
     icon: "🍔",
-    title: "Menú",
+    title: "Carta",
     desc: "Editar productos, precios, imágenes y Burger del Mes",
     priority: false,
   },
