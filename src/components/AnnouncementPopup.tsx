@@ -95,7 +95,7 @@ export default function AnnouncementPopup() {
             >
               {announcements.map((a) => (
                 <div key={a.id} className="w-full shrink-0 text-center px-1">
-                  <h2 className="font-display text-2xl uppercase tracking-wider text-[#F5F5F5] mb-3">
+                  <h2 className="text-2xl uppercase tracking-wider text-[#F5F5F5] mb-3">
                     {a.title}
                   </h2>
                   <p className="text-[#f0ece4]/80 text-sm leading-relaxed">

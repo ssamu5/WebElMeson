@@ -24,7 +24,7 @@ export default function BestSellers({ items }: Props) {
 
       <div className="flex justify-center mt-10">
         <Link href="/carta">
-          <Button variant="neon" size="md" className="font-rawhide">Ver la Carta Completa</Button>
+          <Button variant="neon" size="md" className="font-display">Ver la Carta Completa</Button>
         </Link>
       </div>
     </section>

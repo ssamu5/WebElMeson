@@ -103,7 +103,7 @@ export default function FoodtruckCalendar({ initial }: Props) {
           {/* Day headers */}
           <div className="grid grid-cols-7 border-b border-dark-border">
             {["Lun", "Mar", "Mié", "Jue", "Vie", "Sáb", "Dom"].map((d) => (
-              <div key={d} className="py-2 text-center text-xs font-rawhide uppercase tracking-wider text-muted">
+              <div key={d} className="py-2 text-center text-xs font-display uppercase tracking-wider text-muted">
                 {d}
               </div>
             ))}
@@ -120,6 +120,7 @@ export default function FoodtruckCalendar({ initial }: Props) {
               const hasEvent = !!eventsByDate[ds];
               const isSelected = selectedDate === ds;
               const isToday = ds === today;
+              const isPast = ds < today;
 
               return (
                 <button
@@ -144,7 +145,12 @@ export default function FoodtruckCalendar({ initial }: Props) {
                     {day}
                   </span>
                   {hasEvent && !isSelected && (
-                    <span className="w-1 h-1 rounded-full bg-brand-pink mt-0.5 shadow-[0_0_4px_#E8189A]" />
+                    <span
+                      className={cn(
+                        "w-1 h-1 rounded-full mt-0.5",
+                        isPast ? "bg-white/60" : "bg-brand-pink shadow-[0_0_4px_#E8189A]"
+                      )}
+                    />
                   )}
                 </button>
               );
@@ -156,7 +162,7 @@ export default function FoodtruckCalendar({ initial }: Props) {
             <div className="border-t border-brand-pink/30 bg-dark-elevated px-4 sm:px-6 py-4 animate-slide-up">
               <div className="flex items-start justify-between gap-4">
                 <div>
-                  <p className="font-rawhide text-xl uppercase tracking-wider text-[#F5F5F5]">
+                  <p className="font-display text-xl uppercase tracking-wider text-[#F5F5F5]">
                     {selectedEvent.event_name}
                   </p>
                   {selectedEvent.start_date === selectedEvent.end_date ? (
@@ -193,10 +199,14 @@ export default function FoodtruckCalendar({ initial }: Props) {
         </div>
 
         {/* Legend */}
-        <div className="mt-4 flex items-center gap-4 text-xs text-muted">
+        <div className="mt-4 flex flex-wrap items-center gap-4 text-xs text-muted">
           <div className="flex items-center gap-1.5">
             <span className="w-2 h-2 rounded-full bg-brand-pink shadow-[0_0_4px_#E8189A]" />
             <span>Estaremos ahí — toca para ver detalle</span>
+          </div>
+          <div className="flex items-center gap-1.5">
+            <span className="w-2 h-2 rounded-full bg-white/60" />
+            <span>Evento ya pasado</span>
           </div>
         </div>
       </div>

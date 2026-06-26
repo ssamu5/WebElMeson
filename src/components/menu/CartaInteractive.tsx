@@ -131,7 +131,7 @@ export default function CartaInteractive({ items, burger }: Props) {
                 </h2>
                 <div className="mt-2 h-[2px] w-16 bg-brand-pink shadow-[0_0_8px_#D93060,0_0_16px_rgba(217,48,96,0.4)] mx-auto" />
                 {burger.burger_month_label && (
-                  <span className="absolute top-0 right-0 font-rawhide text-xs uppercase tracking-widest text-brand-pink border border-brand-pink/30 px-2 py-1 rounded-sm">
+                  <span className="absolute top-0 right-0 font-display text-xs uppercase tracking-widest text-brand-pink border border-brand-pink/30 px-2 py-1 rounded-sm">
                     {burger.burger_month_label}
                   </span>
                 )}

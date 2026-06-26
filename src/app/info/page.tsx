@@ -56,7 +56,7 @@ export default function InfoPage() {
             ].map((val) => (
               <div key={val.title} className="glass-card rounded-lg p-6 hover:border-brand-pink/30 transition-all duration-300">
                 <div className="w-8 h-[2px] bg-brand-pink mb-4 shadow-[0_0_6px_#E8189A]" />
-                <h3 className="font-rawhide text-lg uppercase tracking-wider text-[#F5F5F5] mb-2">{val.title}</h3>
+                <h3 className="font-display text-lg uppercase tracking-wider text-[#F5F5F5] mb-2">{val.title}</h3>
                 <p className="text-muted text-sm leading-relaxed">{val.text}</p>
               </div>
             ))}
