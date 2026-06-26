@@ -1,15 +1,20 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { createClient } from "@/lib/supabase/client";
 import { Announcement } from "@/types";
 
+const SESSION_KEY = "announcements_shown";
+
 export default function AnnouncementPopup() {
-  const [announcement, setAnnouncement] = useState<Announcement | null>(null);
+  const [announcements, setAnnouncements] = useState<Announcement[]>([]);
+  const [index, setIndex] = useState(0);
   const [visible, setVisible] = useState(false);
+  const touchStartX = useRef<number | null>(null);
 
   useEffect(() => {
+    if (sessionStorage.getItem(SESSION_KEY)) return;
     const supabase = createClient();
     const now = new Date().toISOString();
     supabase
@@ -18,25 +23,40 @@ export default function AnnouncementPopup() {
       .eq("is_active", true)
       .lte("start_at", now)
       .gte("end_at", now)
-      .order("created_at", { ascending: false })
-      .limit(1)
-      .single()
+      .order("created_at", { ascending: true })
       .then(({ data }) => {
-        if (data) {
-          setAnnouncement(data as Announcement);
+        if (data && data.length > 0) {
+          setAnnouncements(data as Announcement[]);
           setVisible(true);
         }
       });
   }, []);
 
-  if (!visible || !announcement) return null;
+  function closeAll() {
+    setVisible(false);
+    sessionStorage.setItem(SESSION_KEY, "1");
+  }
+
+  function onDragStart(x: number) {
+    touchStartX.current = x;
+  }
+
+  function onDragEnd(x: number) {
+    if (touchStartX.current === null) return;
+    const delta = x - touchStartX.current;
+    touchStartX.current = null;
+    if (delta < -50 && index < announcements.length - 1) setIndex((i) => i + 1);
+    else if (delta > 50 && index > 0) setIndex((i) => i - 1);
+  }
+
+  if (!visible || announcements.length === 0) return null;
 
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center px-4">
       {/* Backdrop */}
       <div
         className="absolute inset-0 bg-black/70 backdrop-blur-sm"
-        onClick={() => setVisible(false)}
+        onClick={closeAll}
       />
 
       {/* Panel */}
@@ -47,7 +67,7 @@ export default function AnnouncementPopup() {
 
           {/* Close button */}
           <button
-            onClick={() => setVisible(false)}
+            onClick={closeAll}
             className="absolute top-4 right-4 w-8 h-8 rounded-full bg-dark-elevated border border-dark-border flex items-center justify-center text-muted hover:text-white hover:border-brand-pink transition-colors z-10"
             aria-label="Cerrar"
           >
@@ -63,20 +83,50 @@ export default function AnnouncementPopup() {
             </div>
           </div>
 
-          <div className="relative z-10 text-center">
-            <h2 className="font-display text-2xl uppercase tracking-wider text-[#F5F5F5] mb-3">
-              {announcement.title}
-            </h2>
-            <p className="text-[#f0ece4]/80 text-sm leading-relaxed">
-              {announcement.message}
-            </p>
+          {/* Swipeable slides */}
+          <div className="relative z-10 overflow-hidden">
+            <div
+              className="flex transition-transform duration-300 ease-out"
+              style={{ transform: `translateX(-${index * 100}%)` }}
+              onTouchStart={(e) => onDragStart(e.touches[0].clientX)}
+              onTouchEnd={(e) => onDragEnd(e.changedTouches[0].clientX)}
+              onMouseDown={(e) => onDragStart(e.clientX)}
+              onMouseUp={(e) => onDragEnd(e.clientX)}
+            >
+              {announcements.map((a) => (
+                <div key={a.id} className="w-full shrink-0 text-center px-1">
+                  <h2 className="font-display text-2xl uppercase tracking-wider text-[#F5F5F5] mb-3">
+                    {a.title}
+                  </h2>
+                  <p className="text-[#f0ece4]/80 text-sm leading-relaxed">
+                    {a.message}
+                  </p>
+                </div>
+              ))}
+            </div>
           </div>
 
+          {/* Dots */}
+          {announcements.length > 1 && (
+            <div className="relative z-10 flex items-center justify-center gap-1.5 mt-5">
+              {announcements.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => setIndex(i)}
+                  aria-label={`Anuncio ${i + 1}`}
+                  className={`h-1.5 rounded-full transition-all duration-200 ${
+                    i === index ? "w-6 bg-brand-pink" : "w-1.5 bg-dark-border"
+                  }`}
+                />
+              ))}
+            </div>
+          )}
+
           <button
-            onClick={() => setVisible(false)}
+            onClick={closeAll}
             className="relative z-10 mt-6 w-full bg-brand-pink text-white font-display text-xs uppercase tracking-wider py-3 rounded-sm shadow-[0_0_20px_rgba(232,24,154,0.5)] hover:bg-brand-pink-dark transition-colors"
           >
-            Entendido
+            Vale!
           </button>
         </div>
       </div>
