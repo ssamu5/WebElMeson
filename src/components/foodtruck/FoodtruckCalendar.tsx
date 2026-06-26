@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
 import { FoodtruckLocation } from "@/types";
-import { formatMonthYear, formatDateEs } from "@/lib/utils/formatDate";
+import { formatMonthYear, formatDateEs, todayString } from "@/lib/utils/formatDate";
 import { cn } from "@/lib/utils/cn";
 
 interface Props {
@@ -76,7 +76,7 @@ export default function FoodtruckCalendar({ initial }: Props) {
     return `${year}-${String(month + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
   }
 
-  const today = new Date().toISOString().split("T")[0];
+  const today = todayString();
 
   return (
     <section className="py-16 px-4">

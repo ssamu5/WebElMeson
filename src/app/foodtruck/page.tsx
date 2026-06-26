@@ -5,6 +5,7 @@ import TodayLocation from "@/components/foodtruck/TodayLocation";
 import FoodtruckCalendar from "@/components/foodtruck/FoodtruckCalendar";
 import TodayBurgersList from "@/components/foodtruck/TodayBurgersList";
 import { FoodtruckLocation, FoodtruckItem } from "@/types";
+import { todayString } from "@/lib/utils/formatDate";
 
 export const metadata: Metadata = {
   title: "Foodtruck",
@@ -16,7 +17,7 @@ const WA_URL = "https://wa.me/34690657610?text=Hola%2C%20me%20gustar%C3%ADa%20co
 
 export default async function FoodtruckPage() {
   const supabase = await createClient();
-  const today = new Date().toISOString().split("T")[0];
+  const today = todayString();
 
   const [{ data: locationsData }, { data: todayLocationData }, { data: todayItemsData }] =
     await Promise.all([
@@ -83,13 +84,15 @@ export default async function FoodtruckPage() {
 
       {/* Productos de hoy */}
       <section id="burgers-hoy" className="py-16 px-4 border-b border-dark-border/50">
-        <div className="max-w-2xl mx-auto text-center">
-          <h2 className="font-playfair text-3xl sm:text-4xl uppercase tracking-wider neon-text mb-2">
-            Burgers de Hoy en la Foodtruck
-          </h2>
-          <p className="text-muted text-sm mb-8 max-w-md mx-auto">
-            Esto es lo que tenemos hoy en la foodtruck.
-          </p>
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-8">
+            <h2 className="font-playfair text-3xl sm:text-4xl uppercase tracking-wider neon-text mb-2">
+              Burgers de Hoy en la Foodtruck
+            </h2>
+            <p className="text-muted text-sm max-w-md mx-auto">
+              Esto es lo que tenemos hoy en la foodtruck.
+            </p>
+          </div>
           <TodayBurgersList initial={(todayItemsData as FoodtruckItem[]) ?? []} />
         </div>
       </section>

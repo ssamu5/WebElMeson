@@ -19,5 +19,5 @@ export function formatMonthYear(dateStr: string): string {
 }
 
 export function todayString(): string {
-  return new Date().toISOString().split("T")[0];
+  return new Intl.DateTimeFormat("en-CA", { timeZone: "Europe/Madrid" }).format(new Date());
 }

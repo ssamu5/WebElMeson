@@ -1,17 +1,28 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Image from "next/image";
 import { createClient } from "@/lib/supabase/client";
-import { FoodtruckItem } from "@/types";
-import { formatPriceShort } from "@/lib/utils/formatPrice";
+import { FoodtruckItem, FoodtruckCategory, FOODTRUCK_CATEGORY_LABELS } from "@/types";
+import SectionTitle from "@/components/ui/SectionTitle";
+import FoodtruckItemCard from "./FoodtruckItemCard";
+import FoodtruckModal from "./FoodtruckModal";
 
 interface Props {
   initial: FoodtruckItem[];
 }
 
+const ORDER: FoodtruckCategory[] = ["entrantes", "burgers", "postres", "bebidas"];
+
+const RUNES: Record<FoodtruckCategory, string> = {
+  entrantes: "ᚠ",
+  burgers: "ᚦ",
+  postres: "ᚾ",
+  bebidas: "ᛒ",
+};
+
 export default function TodayBurgersList({ initial }: Props) {
   const [items, setItems] = useState<FoodtruckItem[]>(initial);
+  const [selected, setSelected] = useState<FoodtruckItem | null>(null);
 
   useEffect(() => {
     const supabase = createClient();
@@ -41,29 +52,38 @@ export default function TodayBurgersList({ initial }: Props) {
     );
   }
 
+  const byCategory = ORDER.reduce(
+    (acc, cat) => ({ ...acc, [cat]: items.filter((i) => i.category === cat) }),
+    {} as Record<FoodtruckCategory, FoodtruckItem[]>
+  );
+
   return (
-    <div className="grid gap-3 sm:grid-cols-2 text-left">
-      {items.map((item) => (
-        <div
-          key={item.id}
-          className="flex items-start gap-3 bg-dark-elevated border border-dark-border rounded-xl p-4"
-        >
-          {item.image_url && (
-            <div className="relative w-16 h-16 shrink-0 rounded-lg overflow-hidden">
-              <Image src={item.image_url} alt={item.name} fill className="object-cover" sizes="64px" />
-            </div>
-          )}
-          <div className="flex-1 min-w-0">
-            <p className="font-display text-lg uppercase tracking-wider text-brand-pink leading-tight">
-              {item.name}
-            </p>
-            {item.description && (
-              <p className="text-muted text-xs mt-0.5 line-clamp-2">{item.description}</p>
-            )}
-            <p className="font-display text-base price-shimmer mt-1">{formatPriceShort(item.price)}</p>
-          </div>
-        </div>
-      ))}
-    </div>
+    <>
+      <div className="space-y-12 text-left">
+        {ORDER.map((cat) => {
+          const catItems = byCategory[cat];
+          if (catItems.length === 0) return null;
+          return (
+            <section key={cat}>
+              <SectionTitle title={FOODTRUCK_CATEGORY_LABELS[cat]} runeChar={RUNES[cat]} centered />
+              <div className="space-y-2">
+                {catItems.map((item) => (
+                  <button
+                    key={item.id}
+                    onClick={() => setSelected(item)}
+                    className="w-full text-left focus:outline-none rounded-xl"
+                    aria-label={`Ver ${item.name}`}
+                  >
+                    <FoodtruckItemCard item={item} />
+                  </button>
+                ))}
+              </div>
+            </section>
+          );
+        })}
+      </div>
+
+      {selected && <FoodtruckModal item={selected} onClose={() => setSelected(null)} />}
+    </>
   );
 }

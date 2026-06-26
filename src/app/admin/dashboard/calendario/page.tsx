@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
 import { FoodtruckLocation } from "@/types";
-import { formatDateEs } from "@/lib/utils/formatDate";
+import { formatDateEs, todayString } from "@/lib/utils/formatDate";
 import Link from "next/link";
 
 const EMPTY_FORM = {
@@ -105,7 +105,7 @@ export default function AdminCalendarioPage() {
     await fetchLocations();
   }
 
-  const today = new Date().toISOString().split("T")[0];
+  const today = todayString();
   const upcoming = locations.filter((l) => l.end_date >= today);
   const past = locations.filter((l) => l.end_date < today);
 
