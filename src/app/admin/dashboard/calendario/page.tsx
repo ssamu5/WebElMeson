@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
 import { FoodtruckLocation } from "@/types";
 import { formatDateEs } from "@/lib/utils/formatDate";
@@ -25,6 +25,7 @@ export default function AdminCalendarioPage() {
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [deleting, setDeleting] = useState<string | null>(null);
+  const formRef = useRef<HTMLFormElement>(null);
 
   useEffect(() => {
     fetchLocations();
@@ -53,6 +54,7 @@ export default function AdminCalendarioPage() {
       special_note: loc.special_note || "",
       is_confirmed: loc.is_confirmed,
     });
+    formRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 
   function cancelEdit() {
@@ -71,13 +73,21 @@ export default function AdminCalendarioPage() {
     };
 
     if (editing) {
-      await supabase
+      const { error } = await supabase
         .from("foodtruck_locations")
         .update({ ...payload, updated_at: new Date().toISOString() })
         .eq("id", editing);
+      if (error) {
+        setSaving(false);
+        return alert("Error al actualizar: " + error.message);
+      }
       setEditing(null);
     } else {
-      await supabase.from("foodtruck_locations").insert(payload);
+      const { error } = await supabase.from("foodtruck_locations").insert(payload);
+      if (error) {
+        setSaving(false);
+        return alert("Error al añadir: " + error.message);
+      }
     }
 
     setForm(EMPTY_FORM);
@@ -89,8 +99,9 @@ export default function AdminCalendarioPage() {
     if (!confirm("¿Eliminar este evento?")) return;
     setDeleting(id);
     const supabase = createClient();
-    await supabase.from("foodtruck_locations").delete().eq("id", id);
+    const { error } = await supabase.from("foodtruck_locations").delete().eq("id", id);
     setDeleting(null);
+    if (error) return alert("Error al eliminar: " + error.message);
     await fetchLocations();
   }
 
@@ -109,7 +120,7 @@ export default function AdminCalendarioPage() {
         <h1 className="font-display text-2xl uppercase tracking-wider text-[#F5F5F5] mb-6">Calendario Foodtruck</h1>
 
         {/* Form */}
-        <form onSubmit={handleSave} className="glass-card rounded-xl p-5 space-y-4 mb-8">
+        <form ref={formRef} onSubmit={handleSave} className="glass-card rounded-xl p-5 space-y-4 mb-8">
           <h2 className="font-display text-sm uppercase tracking-widest text-brand-pink">
             {editing ? "Editar Evento" : "Añadir Evento"}
           </h2>
