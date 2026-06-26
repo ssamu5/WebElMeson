@@ -206,10 +206,10 @@ export default function AdminMenuPage() {
       .from("menu_items")
       .update({ is_burger_of_month: false, burger_month_label: null })
       .eq("is_burger_of_month", true);
-    // Set new one
+    // Set new one — la desactivamos de la carta normal (toggle off) ya que se muestra en su sección especial
     const { error } = await supabase
       .from("menu_items")
-      .update({ is_burger_of_month: true, burger_month_label: burgerMonthLabel.trim() })
+      .update({ is_burger_of_month: true, burger_month_label: burgerMonthLabel.trim(), is_available: false })
       .eq("id", item.id);
     if (!error) {
       setItems((prev) =>
@@ -217,6 +217,7 @@ export default function AdminMenuPage() {
           ...i,
           is_burger_of_month: i.id === item.id,
           burger_month_label: i.id === item.id ? burgerMonthLabel.trim() : null,
+          is_available: i.id === item.id ? false : i.is_available,
         }))
       );
     }

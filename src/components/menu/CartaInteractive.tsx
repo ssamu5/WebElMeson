@@ -111,7 +111,16 @@ export default function CartaInteractive({ items, burger }: Props) {
         ))}
 
         {/* Burger del Mes — before Postres */}
-        {burger && (
+        {!burger ? (
+          <section id="burger-mes" className="relative text-center">
+            <span style={{ display: "block", color: "#D93060", opacity: 0.85, fontSize: "2rem", letterSpacing: "0.25em", marginBottom: 8, lineHeight: 1 }}>ᛟ</span>
+            <h2 className="text-4xl md:text-5xl uppercase tracking-wider neon-text">
+              Burger del Mes
+            </h2>
+            <div className="mt-2 h-[2px] w-16 bg-brand-pink shadow-[0_0_8px_#D93060,0_0_16px_rgba(217,48,96,0.4)] mx-auto mb-6" />
+            <p className="text-muted text-sm uppercase tracking-widest font-display">Próximamente</p>
+          </section>
+        ) : (
           <section id="burger-mes" className="relative">
             <div className="absolute -inset-4 rounded-xl bg-gradient-to-r from-brand-pink/5 via-transparent to-brand-pink/5 pointer-events-none" />
             <div className="relative">

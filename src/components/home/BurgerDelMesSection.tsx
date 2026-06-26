@@ -33,7 +33,20 @@ export default function BurgerDelMesSection({ initial }: Props) {
     return () => { supabase.removeChannel(channel); };
   }, []);
 
-  if (!burger) return null;
+  if (!burger) {
+    return (
+      <section>
+        <div className="h-[1px] bg-gradient-to-r from-transparent via-brand-pink/40 to-transparent" />
+        <div className="px-4 py-14 text-center max-w-2xl mx-auto">
+          <h3 className="font-playfair text-3xl sm:text-4xl uppercase tracking-wider neon-text mb-3">
+            Burger del Mes
+          </h3>
+          <p className="text-muted text-sm uppercase tracking-widest font-display">Próximamente</p>
+        </div>
+        <div className="h-[1px] bg-gradient-to-r from-transparent via-brand-pink/20 to-transparent" />
+      </section>
+    );
+  }
 
   return (
     <section>
