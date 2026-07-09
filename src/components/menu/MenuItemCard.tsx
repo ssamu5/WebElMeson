@@ -40,6 +40,12 @@ export default function MenuItemCard({ item, variant = "default", highlighted = 
             {item.description}
           </p>
         )}
+
+        {item.allergens && item.allergens.length > 0 && (
+          <p className="text-muted/60 text-[11px] mt-1 leading-snug">
+            Alérgenos: {item.allergens.join(", ")}
+          </p>
+        )}
       </div>
 
       {/* Thumbnail */}

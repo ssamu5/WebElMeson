@@ -91,11 +91,15 @@ export default function MenuModal({ item, onClose }: Props) {
               </div>
             )}
 
-            {item.allergens && item.allergens.length > 0 && (
+            {item.is_burger_of_month ? (
+              <p className="text-muted text-xs uppercase tracking-wider">
+                Alérgenos: consultar con el camarero
+              </p>
+            ) : item.allergens && item.allergens.length > 0 ? (
               <p className="text-muted text-xs uppercase tracking-wider">
                 Alérgenos: {item.allergens.join(", ")}
               </p>
-            )}
+            ) : null}
           </div>
         </div>
 

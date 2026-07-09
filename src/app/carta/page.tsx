@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import { createClient } from "@/lib/supabase/server";
 import MenuCategoryTabs from "@/components/menu/MenuCategoryTabs";
 import CartaInteractive from "@/components/menu/CartaInteractive";
+import AllergenButton from "@/components/menu/AllergenButton";
 import { MenuItem } from "@/types";
 
 export const metadata: Metadata = { title: "Carta" };
@@ -34,6 +35,7 @@ export default async function CartaPage() {
         <p className="relative text-muted text-xs sm:text-sm mt-2 uppercase tracking-widest font-garamond">
           Fustiñana, Navarra · Ingredientes frescos cada día
         </p>
+        <AllergenButton />
       </div>
 
       <MenuCategoryTabs />
