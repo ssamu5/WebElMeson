@@ -77,7 +77,7 @@ export default function AllergenButton() {
                 {/* Front — leyenda de los 14 alérgenos */}
                 <div style={{ position: "absolute", inset: 0, backfaceVisibility: "hidden" }}>
                   <Image
-                    src="/images/alergenos-leyenda.png"
+                    src="/images/alergenos-leyenda.jpg"
                     alt="Los 14 alérgenos principales numerados con icono y nombre"
                     fill
                     className="object-contain"
@@ -88,7 +88,7 @@ export default function AllergenButton() {
                 {/* Back — lista de productos con sus números */}
                 <div style={{ position: "absolute", inset: 0, backfaceVisibility: "hidden", transform: "rotateY(180deg)" }}>
                   <Image
-                    src="/images/alergenos-productos.png"
+                    src="/images/alergenos-productos.jpg"
                     alt="Alérgenos por producto de la carta"
                     fill
                     className="object-contain"
