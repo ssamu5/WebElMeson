@@ -27,7 +27,7 @@ export default function FoodtruckTeaser() {
         <div className="max-w-xl">
           <h2 className="metal text-5xl sm:text-6xl md:text-7xl text-[#F5F5F5] mb-4 leading-none">
             Nuestra<br />
-            <span className="neon-text">Foodtruck</span>
+            <span className="tracking-[0.08em]">Foodtruck</span>
           </h2>
           <p className="text-muted text-sm mb-6 italic">
             Consulta el calendario para ver nuestras próximas paradas.

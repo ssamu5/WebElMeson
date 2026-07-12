@@ -46,9 +46,14 @@ export default function TodayBurgersList({ initial }: Props) {
 
   if (items.length === 0) {
     return (
-      <p className="text-muted text-sm italic">
-        Hoy no hay productos especiales activados — consulta la carta habitual.
-      </p>
+      <div className="py-8 text-center">
+        <p className="font-display text-xl uppercase tracking-widest text-muted">
+          Hoy no hay servicio
+        </p>
+        <p className="text-muted/60 text-sm mt-2">
+          Te esperamos en la próxima parada!
+        </p>
+      </div>
     );
   }
 

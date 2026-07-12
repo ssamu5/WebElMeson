@@ -12,7 +12,7 @@ export default function InfoPage() {
     <div className="min-h-screen">
       <div className="relative py-16 px-4 text-center border-b border-dark-border overflow-hidden">
         <div className="absolute inset-0 bg-gradient-radial from-brand-pink/5 to-transparent" />
-        <h1 className="relative metal text-6xl sm:text-7xl md:text-8xl tracking-[0.15em] text-[#F5F5F5]">
+        <h1 className="relative metal text-6xl sm:text-7xl md:text-8xl tracking-wide text-[#F5F5F5]">
           Nuestra Historia
         </h1>
       </div>

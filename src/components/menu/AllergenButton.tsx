@@ -22,7 +22,7 @@ export default function AllergenButton() {
     <>
       <button
         onClick={() => setOpen(true)}
-        className="relative inline-flex items-center gap-1.5 mt-4 text-muted hover:text-brand-pink transition-colors text-[10px] font-display uppercase tracking-widest border border-dark-border hover:border-brand-pink/50 px-3 py-1.5 rounded-sm group"
+        className="relative inline-flex items-center gap-2 mt-4 text-brand-pink/80 hover:text-brand-pink transition-colors text-xs font-display uppercase tracking-widest border border-brand-pink/40 hover:border-brand-pink bg-brand-pink/8 hover:bg-brand-pink/15 px-4 py-2 rounded-sm group"
         aria-label="Ver información de alérgenos"
       >
         <AllergenIcon className="text-brand-pink/60 group-hover:text-brand-pink transition-colors" />

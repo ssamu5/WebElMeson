@@ -51,7 +51,7 @@ export default async function FoodtruckPage() {
         </div>
         <div className="absolute top-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-brand-pink/50 to-transparent" />
         <div className="relative z-10 text-center px-4 py-16 sm:py-24">
-          <h1 className="metal text-6xl sm:text-7xl md:text-8xl neon-text leading-none drop-shadow-[0_2px_20px_rgba(0,0,0,0.8)]">
+          <h1 className="metal text-6xl sm:text-7xl md:text-8xl leading-none tracking-[0.08em] drop-shadow-[0_2px_20px_rgba(0,0,0,0.8)]">
             Foodtruck
           </h1>
           <p className="font-playfair text-3xl sm:text-4xl uppercase tracking-wider text-[#F5F5F5] mt-1">
@@ -112,7 +112,7 @@ export default async function FoodtruckPage() {
             href={WA_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-3 bg-[#25D366] text-white font-rawhide text-lg uppercase tracking-wider px-8 py-4 rounded-[2px] hover:bg-[#1aad54] active:scale-95 transition-all duration-200 shadow-[0_0_20px_rgba(37,211,102,0.3)]"
+            className="inline-flex items-center gap-3 bg-[#25D366] text-white font-display text-lg uppercase tracking-wider px-8 py-4 rounded-[2px] hover:bg-[#1aad54] active:scale-95 transition-all duration-200 shadow-[0_0_20px_rgba(37,211,102,0.3)]"
           >
             <WhatsAppIcon />
             Escríbenos por WhatsApp
