@@ -25,7 +25,7 @@ export default function HeroSection() {
       {/* Content */}
       <div className="relative z-10 text-center px-4 flex flex-col items-center gap-4 sm:gap-5 animate-fade-in w-full max-w-lg mx-auto">
         <div>
-          <h1 className="metal text-white drop-shadow-[0_2px_30px_rgba(0,0,0,0.9)]" style={{ fontSize: "clamp(4.5rem,24vw,10rem)", lineHeight: 1 }}>
+          <h1 className="metal animate-glitch text-white drop-shadow-[0_2px_30px_rgba(0,0,0,0.9)]" style={{ fontSize: "clamp(4.5rem,24vw,10rem)", lineHeight: 1 }}>
             El Mesón
           </h1>
           <p className="metal neon-text mt-1" style={{ fontSize: "clamp(1.8rem,9vw,4rem)" }}>

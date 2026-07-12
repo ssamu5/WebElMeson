@@ -1,7 +1,7 @@
 "use client";
 
 export default function HoursBanner() {
-  const text = "SÁBADOS Y DOMINGOS · 20:00 – 23:00 · FUSTIÑANA, NAVARRA";
+  const text = "SÁBADOS Y DOMINGOS · 20:30 – 23:00 · FUSTIÑANA, NAVARRA";
   const repeated = Array(6).fill(text).join("   ᛟ   ");
 
   return (
