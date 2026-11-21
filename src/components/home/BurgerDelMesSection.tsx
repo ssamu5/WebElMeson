@@ -64,13 +64,14 @@ export default function BurgerDelMesSection({ initial }: Props) {
       </div>
 
       {burger.image_url && (
-        <div className="relative w-full aspect-[4/3] sm:aspect-[16/9] overflow-hidden">
+        <div className="w-full flex justify-center">
           <Image
             src={burger.image_url}
             alt={burger.name}
-            fill
-            className="object-cover object-center"
-            sizes="100vw"
+            width={0}
+            height={0}
+            className="w-full sm:w-auto h-auto sm:max-h-[80vh] max-w-full"
+            sizes="(min-width: 640px) 80vh, 100vw"
             priority
           />
         </div>
